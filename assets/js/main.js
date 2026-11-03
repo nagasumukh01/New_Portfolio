@@ -26,13 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
    Handles both the unique celestial day/night switch and standard buttons
    ========================================================================== */
 function initThemeToggle() {
-  const themeSwitch = document.getElementById('cyber-theme-switch') || document.getElementById('theme-toggle-btn');
-  const themeIcon = document.getElementById('theme-icon');
+  const themeSwitch = document.getElementById('cyber-theme-switch');
   
   // Check stored theme or default to dark
   const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
+  updateThemeSwitch(savedTheme);
 
   function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
@@ -40,7 +39,7 @@ function initThemeToggle() {
 
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('portfolio-theme', newTheme);
-    updateThemeIcon(newTheme);
+    updateThemeSwitch(newTheme);
 
     if (window.playUiSound) window.playUiSound('toggle');
     showToast(`Switched to ${newTheme === 'dark' ? 'Cyber Dark' : 'Technical Light'} Mode`);
@@ -56,16 +55,7 @@ function initThemeToggle() {
     });
   }
 
-  function updateThemeIcon(theme) {
-    if (themeIcon) {
-      if (theme === 'light') {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-      } else {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-      }
-    }
+  function updateThemeSwitch(theme) {
     if (themeSwitch) {
       themeSwitch.setAttribute('title', theme === 'dark' ? 'Switch to Light Mode (Day)' : 'Switch to Dark Mode (Night)');
       themeSwitch.setAttribute('aria-checked', theme === 'light' ? 'true' : 'false');
