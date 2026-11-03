@@ -1,9 +1,12 @@
 /**
  * D Nagasumukh - Technical Portfolio Core JavaScript
- * Futuristic interactive effects, typewriter ticker, neural particle canvas & lightbox
+ * Futuristic interactive effects, typewriter ticker, neural particle canvas,
+ * Light/Dark theme manager, Text-to-Speech audio reader, & lightbox
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
+  initTextToSpeech();
   initTypewriter();
   initNeuralCanvas();
   initProjectFilters();
@@ -11,11 +14,135 @@ document.addEventListener('DOMContentLoaded', () => {
   initClipboardActions();
   initMobileNav();
   initScrollSpy();
-  initContactForm();
 });
 
 /* ==========================================================================
-   1. DYNAMIC MOVING / SCROLLING TAGLINE CYCLER
+   1. LIGHT / DARK THEME TOGGLE WITH LOCALSTORAGE PERSISTENCE
+   ========================================================================== */
+function initThemeToggle() {
+  const themeBtn = document.getElementById('theme-toggle-btn');
+  const themeIcon = document.getElementById('theme-icon');
+  
+  // Check stored theme or default to dark
+  const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('portfolio-theme', newTheme);
+      updateThemeIcon(newTheme);
+
+      showToast(`Switched to ${newTheme === 'dark' ? 'Dark' : 'Light'} Mode`);
+    });
+  }
+
+  function updateThemeIcon(theme) {
+    if (!themeIcon) return;
+    if (theme === 'light') {
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      themeBtn?.setAttribute('title', 'Switch to Dark Mode');
+    } else {
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      themeBtn?.setAttribute('title', 'Switch to Light Mode');
+    }
+  }
+}
+
+/* ==========================================================================
+   2. TEXT-TO-SPEECH (SPEAKER BUTTON READS "ABOUT ME")
+   Native Web Speech API (Works offline, 0 latency, 0 third-party dependencies)
+   ========================================================================== */
+function initTextToSpeech() {
+  const ttsBtn = document.getElementById('tts-speaker-btn');
+  const ttsIcon = document.getElementById('tts-icon');
+  const ttsText = document.getElementById('tts-text');
+
+  if (!ttsBtn || !('speechSynthesis' in window)) {
+    if (ttsBtn) ttsBtn.style.display = 'none';
+    return;
+  }
+
+  const bioSpeechText = 
+    "Hello! I am D Nagasumukh. Full stack developer, Machine Learning Engineer, and App Developer. " +
+    "I am a Computer Science and Engineering undergraduate at Reva University, Bangalore, with an 8.06 CGPA. " +
+    "I specialize in architecting intelligent machine learning applications, scalable full stack web systems, and problem-solving through clean algorithmic code. " +
+    "Feel free to explore my live projects, test my interactive terminal, or connect with me directly.";
+
+  let utterance = null;
+  let isSpeaking = false;
+
+  function stopSpeech() {
+    window.speechSynthesis.cancel();
+    isSpeaking = false;
+    ttsBtn.classList.remove('speaking');
+    if (ttsIcon) {
+      ttsIcon.classList.remove('fa-volume-xmark');
+      ttsIcon.classList.add('fa-volume-high');
+    }
+    if (ttsText) ttsText.textContent = 'Listen to Intro';
+  }
+
+  function startSpeech() {
+    window.speechSynthesis.cancel(); // Stop any pending utterances
+
+    utterance = new SpeechSynthesisUtterance(bioSpeechText);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    // Pick an English voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('English')));
+    if (englishVoice) {
+      utterance.voice = englishVoice;
+    }
+
+    utterance.onstart = () => {
+      isSpeaking = true;
+      ttsBtn.classList.add('speaking');
+      if (ttsIcon) {
+        ttsIcon.classList.remove('fa-volume-high');
+        ttsIcon.classList.add('fa-volume-xmark');
+      }
+      if (ttsText) ttsText.textContent = 'Stop Audio';
+      showToast('Playing About Me audio...');
+    };
+
+    utterance.onend = () => {
+      stopSpeech();
+    };
+
+    utterance.onerror = () => {
+      stopSpeech();
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  ttsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (isSpeaking) {
+      stopSpeech();
+      showToast('Audio playback stopped');
+    } else {
+      startSpeech();
+    }
+  });
+
+  // Cancel speech if user navigates away or refreshes
+  window.addEventListener('beforeunload', () => {
+    window.speechSynthesis.cancel();
+  });
+}
+
+/* ==========================================================================
+   3. DYNAMIC MOVING / SCROLLING TAGLINE CYCLER
    "Full stack developer", "Machine Learning Engineer", "App Developer"
    ========================================================================== */
 function initTypewriter() {
@@ -63,7 +190,7 @@ function initTypewriter() {
 }
 
 /* ==========================================================================
-   2. INTERACTIVE NEURAL CANVAS (CYBERNETIC TECH PARTICLES)
+   4. INTERACTIVE NEURAL CANVAS (CYBERNETIC TECH PARTICLES)
    ========================================================================== */
 function initNeuralCanvas() {
   const canvas = document.getElementById('neural-canvas');
@@ -101,7 +228,6 @@ function initNeuralCanvas() {
       this.vx = (Math.random() - 0.5) * 0.7;
       this.vy = (Math.random() - 0.5) * 0.7;
       this.radius = Math.random() * 1.8 + 1;
-      this.color = Math.random() > 0.4 ? 'rgba(6, 182, 212, ' : 'rgba(168, 85, 247, ';
       this.baseAlpha = Math.random() * 0.5 + 0.2;
     }
 
@@ -125,10 +251,14 @@ function initNeuralCanvas() {
       }
     }
 
-    draw() {
+    draw(isLight) {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color + this.baseAlpha + ')';
+      if (isLight) {
+        ctx.fillStyle = `rgba(2, 132, 199, ${this.baseAlpha * 0.7})`;
+      } else {
+        ctx.fillStyle = `rgba(6, 182, 212, ${this.baseAlpha})`;
+      }
       ctx.fill();
     }
   }
@@ -139,11 +269,12 @@ function initNeuralCanvas() {
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
     // Connect particles
     for (let i = 0; i < particles.length; i++) {
       particles[i].update();
-      particles[i].draw();
+      particles[i].draw(isLight);
 
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -151,11 +282,11 @@ function initNeuralCanvas() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 130) {
-          const alpha = (1 - dist / 130) * 0.18;
+          const alpha = (1 - dist / 130) * (isLight ? 0.12 : 0.18);
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+          ctx.strokeStyle = isLight ? `rgba(2, 132, 199, ${alpha})` : `rgba(56, 189, 248, ${alpha})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -167,11 +298,11 @@ function initNeuralCanvas() {
         const dy = particles[i].y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < mouse.radius) {
-          const alpha = (1 - dist / mouse.radius) * 0.25;
+          const alpha = (1 - dist / mouse.radius) * (isLight ? 0.2 : 0.25);
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(6, 182, 212, ${alpha})`;
+          ctx.strokeStyle = isLight ? `rgba(2, 132, 199, ${alpha})` : `rgba(6, 182, 212, ${alpha})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -185,7 +316,7 @@ function initNeuralCanvas() {
 }
 
 /* ==========================================================================
-   3. PROJECT FILTER TABS
+   5. PROJECT FILTER TABS
    ========================================================================== */
 function initProjectFilters() {
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -219,7 +350,7 @@ function initProjectFilters() {
 }
 
 /* ==========================================================================
-   4. AWARDS & CERTIFICATES LIGHTBOX
+   6. AWARDS & CERTIFICATES LIGHTBOX
    ========================================================================== */
 function initLightbox() {
   const modal = document.getElementById('lightbox-modal');
@@ -266,7 +397,7 @@ function initLightbox() {
 }
 
 /* ==========================================================================
-   5. CLIPBOARD COPY & TOAST NOTIFICATION
+   7. CLIPBOARD COPY & TOAST NOTIFICATION
    ========================================================================== */
 function showToast(message) {
   let toast = document.getElementById('toast');
@@ -299,7 +430,7 @@ function initClipboardActions() {
 }
 
 /* ==========================================================================
-   6. MOBILE NAVIGATION
+   8. MOBILE NAVIGATION
    ========================================================================== */
 function initMobileNav() {
   const toggle = document.querySelector('.mobile-toggle');
@@ -335,7 +466,7 @@ function initMobileNav() {
 }
 
 /* ==========================================================================
-   7. SCROLL SPY ACTIVE NAV LINK
+   9. SCROLL SPY ACTIVE NAV LINK
    ========================================================================== */
 function initScrollSpy() {
   const sections = document.querySelectorAll('section[id]');
@@ -358,30 +489,5 @@ function initScrollSpy() {
         });
       }
     });
-  });
-}
-
-/* ==========================================================================
-   8. CONTACT FORM HANDLER
-   ========================================================================== */
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = form.querySelector('[name="name"]').value;
-    const email = form.querySelector('[name="email"]').value;
-    const message = form.querySelector('[name="message"]').value;
-
-    // Direct mailto fallback with prefilled content
-    const subject = encodeURIComponent(`Portfolio Message from ${name}`);
-    const body = encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`);
-    const mailtoUrl = `mailto:nagasumukh01@gmail.com?subject=${subject}&body=${body}`;
-
-    showToast('Redirecting to your email client to send...');
-    window.location.href = mailtoUrl;
-
-    form.reset();
   });
 }

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>D Nagasumukh | Full Stack Developer & ML Engineer</title>
-  <meta name="description" content="Portfolio of D Nagasumukh - Computer Science Undergrad @ Reva University, Full Stack Developer, Machine Learning Engineer, and App Developer.">
-  <meta name="keywords" content="D Nagasumukh, Nagasumukh, Portfolio, Full Stack Developer, Machine Learning, Python, React, Reva University">
+  <meta name="description"
+    content="Portfolio of D Nagasumukh - Computer Science Undergrad @ Reva University, Full Stack Developer, Machine Learning Engineer, and App Developer.">
+  <meta name="keywords"
+    content="D Nagasumukh, Nagasumukh, Portfolio, Full Stack Developer, Machine Learning, Python, React, Reva University">
   <meta name="author" content="D Nagasumukh">
 
   <!-- Open Graph / Meta -->
@@ -20,7 +23,9 @@
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -28,6 +33,7 @@
   <!-- Core Futuristic Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
   <!-- Background Interactive Neural Tech Canvas -->
@@ -53,20 +59,27 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="GitHub Profile" title="GitHub">
+        <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon"
+          aria-label="GitHub Profile" title="GitHub">
           <i class="fa-brands fa-github"></i>
         </a>
-        <a href="https://linkedin.com/in/nagasumukh-d-05423934a" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="LinkedIn Profile" title="LinkedIn">
+        <a href="https://linkedin.com/in/nagasumukh-d-05423934a" target="_blank" rel="noopener noreferrer"
+          class="btn-icon" aria-label="LinkedIn Profile" title="LinkedIn">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
-        <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="LeetCode Profile" title="LeetCode">
+        <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer" class="btn-icon"
+          aria-label="LeetCode Profile" title="LeetCode">
           <img src="assets/images/leetcode.png" alt="LeetCode" width="16" height="16">
         </a>
-        <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="HackerRank Profile" title="HackerRank">
+        <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon"
+          aria-label="HackerRank Profile" title="HackerRank">
           <img src="assets/images/hackerrank.png" alt="HackerRank" width="16" height="16">
         </a>
         <button class="btn-icon" data-copy="nagasumukh01@gmail.com" title="Copy Email Address" aria-label="Copy Email">
           <i class="fa-regular fa-envelope"></i>
+        </button>
+        <button class="btn-icon" id="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
         </button>
 
         <button class="mobile-toggle" aria-label="Toggle navigation menu">
@@ -87,7 +100,7 @@
             <span>Available for Internships & Projects</span>
           </div>
 
-          <div class="hero-greeting font-mono">// Hello, World! I am</div>
+          <div class="hero-greeting font-mono">// Hello, I am</div>
 
           <h1 class="hero-name">
             <span class="text-gradient">D Nagasumukh</span>
@@ -101,9 +114,20 @@
             </div>
           </div>
 
-          <p class="hero-bio">
-            Computer Science and Engineering undergraduate at <strong style="color:var(--text-main);">Reva University, Bangalore</strong> (8.06 CGPA). Passionate about architecting intelligent machine learning applications, high-performance web systems, and problem-solving through clean algorithmic code.
-          </p>
+          <div class="hero-bio-container">
+            <p class="hero-bio" id="about-text">
+              Computer Science and Engineering undergraduate at <strong style="color:var(--text-main);">Reva University,
+                Bangalore</strong> (8.06 CGPA). Passionate about architecting intelligent machine learning applications,
+              high-performance web systems, and problem-solving through clean algorithmic code.
+            </p>
+            <button id="tts-speaker-btn" class="tts-speaker-btn" title="Listen to About Me (Voice Speech)" aria-label="Listen to About Me">
+              <i class="fa-solid fa-volume-high" id="tts-icon"></i>
+              <span id="tts-text">Listen to Intro</span>
+              <span class="tts-waves" id="tts-waves">
+                <span></span><span></span><span></span>
+              </span>
+            </button>
+          </div>
 
           <div class="hero-metrics">
             <div class="metric-pill">
@@ -144,20 +168,6 @@
             <div class="avatar-image-frame">
               <img src="assets/images/profile.png" alt="D Nagasumukh" class="avatar-img">
             </div>
-
-            <!-- Floating Tech Badges -->
-            <div class="float-pill float-pill-1">
-              <i class="fa-brands fa-python"></i>
-              <span>Python &amp; ML</span>
-            </div>
-            <div class="float-pill float-pill-2">
-              <i class="fa-brands fa-react"></i>
-              <span>React &amp; Node</span>
-            </div>
-            <div class="float-pill float-pill-3">
-              <i class="fa-solid fa-brain"></i>
-              <span>Explainable AI</span>
-            </div>
           </div>
         </div>
       </div>
@@ -169,7 +179,8 @@
         <div class="section-header">
           <span class="section-tag font-mono">// CLI_INTERFACE</span>
           <h2 class="section-title">Interactive Terminal</h2>
-          <p class="section-subtitle">Interact with my developer persona directly using commands or quick buttons below.</p>
+          <p class="section-subtitle">Interact with my developer persona directly using commands or quick buttons below.
+          </p>
         </div>
 
         <div class="terminal-window">
@@ -186,7 +197,9 @@
           <div class="terminal-body" id="terminal-body">
             <!-- Quick Chips -->
             <div class="terminal-chips">
-              <span style="font-size: 0.75rem; color: var(--text-dim); margin-right: 0.5rem; display: flex; align-items: center;">Quick Run:</span>
+              <span
+                style="font-size: 0.75rem; color: var(--text-dim); margin-right: 0.5rem; display: flex; align-items: center;">Quick
+                Run:</span>
               <button class="chip-btn" data-cmd="cat about.json">cat about.json</button>
               <button class="chip-btn" data-cmd="projects">projects</button>
               <button class="chip-btn" data-cmd="skills">skills</button>
@@ -203,14 +216,17 @@
                 <span class="cmd-text">help</span>
               </div>
               <div class="cmd-response">
-                Type any command like <span style="color:var(--neon-cyan)">about</span>, <span style="color:var(--neon-cyan)">projects</span>, <span style="color:var(--neon-cyan)">skills</span>, <span style="color:var(--neon-cyan)">awards</span>, or click the chips above!
+                Type any command like <span style="color:var(--neon-cyan)">about</span>, <span
+                  style="color:var(--neon-cyan)">projects</span>, <span style="color:var(--neon-cyan)">skills</span>,
+                <span style="color:var(--neon-cyan)">awards</span>, or click the chips above!
               </div>
             </div>
 
             <!-- Input Row -->
             <div class="terminal-input-row">
               <span class="cmd-prompt">nagasumukh@dev:~$</span>
-              <input type="text" id="terminal-input" class="terminal-input" placeholder="Type a command (e.g. projects, about, skills)..." autocomplete="off" spellcheck="false">
+              <input type="text" id="terminal-input" class="terminal-input"
+                placeholder="Type a command (e.g. projects, about, skills)..." autocomplete="off" spellcheck="false">
             </div>
           </div>
         </div>
@@ -255,14 +271,18 @@
               </div>
               <h3 class="project-title">Fraud Detection System (XAI)</h3>
               <p class="project-desc">
-                Interactive financial fraud detection application powered by machine learning and Explainable AI (XAI). Provides transparent confidence metrics, feature attribution insights, and a sleek real-time evaluation dashboard.
+                Interactive financial fraud detection application powered by machine learning and Explainable AI (XAI).
+                Provides transparent confidence metrics, feature attribution insights, and a sleek real-time evaluation
+                dashboard.
               </p>
               <div class="project-actions">
-                <a href="https://etgt-frd-v2-xai.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-project">
+                <a href="https://etgt-frd-v2-xai.streamlit.app/" target="_blank" rel="noopener noreferrer"
+                  class="btn-project">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   <span>Launch Live App</span>
                 </a>
-                <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-project-secondary" title="View Source on GitHub">
+                <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer"
+                  class="btn-project-secondary" title="View Source on GitHub">
                   <i class="fa-brands fa-github"></i>
                 </a>
               </div>
@@ -287,14 +307,17 @@
               </div>
               <h3 class="project-title">ATS SACS Resume Evaluator</h3>
               <p class="project-desc">
-                Intelligent resume screening engine that benchmarks resumes against targeted job descriptions. Computes exact ATS matching percentages, surfaces missing domain keywords, and delivers actionable feedback.
+                Intelligent resume screening engine that benchmarks resumes against targeted job descriptions. Computes
+                exact ATS matching percentages, surfaces missing domain keywords, and delivers actionable feedback.
               </p>
               <div class="project-actions">
-                <a href="https://ats-sacs-resume.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-project">
+                <a href="https://ats-sacs-resume.streamlit.app/" target="_blank" rel="noopener noreferrer"
+                  class="btn-project">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   <span>Launch Live App</span>
                 </a>
-                <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-project-secondary" title="View Source on GitHub">
+                <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer"
+                  class="btn-project-secondary" title="View Source on GitHub">
                   <i class="fa-brands fa-github"></i>
                 </a>
               </div>
@@ -319,14 +342,18 @@
               </div>
               <h3 class="project-title">Research Lens AI Analyzer</h3>
               <p class="project-desc">
-                Academic and scientific research assistant that analyzes complex research papers. Generates structural summaries, evaluates methodological rigor, and offers constructive peer feedback for scientific improvements.
+                Academic and scientific research assistant that analyzes complex research papers. Generates structural
+                summaries, evaluates methodological rigor, and offers constructive peer feedback for scientific
+                improvements.
               </p>
               <div class="project-actions">
-                <a href="https://research-lens-ai.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-project">
+                <a href="https://research-lens-ai.streamlit.app/" target="_blank" rel="noopener noreferrer"
+                  class="btn-project">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   <span>Launch Live App</span>
                 </a>
-                <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-project-secondary" title="View Source on GitHub">
+                <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer"
+                  class="btn-project-secondary" title="View Source on GitHub">
                   <i class="fa-brands fa-github"></i>
                 </a>
               </div>
@@ -351,7 +378,8 @@
               </div>
               <h3 class="project-title">GitHub Open Source Hub</h3>
               <p class="project-desc">
-                Centralized hub of open-source algorithmic repositories, C programming projects, systems challenges, database utilities, and ongoing software experiments authored by D Nagasumukh.
+                Centralized hub of open-source algorithmic repositories, C programming projects, systems challenges,
+                database utilities, and ongoing software experiments authored by D Nagasumukh.
               </p>
               <div class="project-actions">
                 <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-project">
@@ -372,7 +400,8 @@
         <div class="section-header">
           <span class="section-tag font-mono">// CAPABILITIES</span>
           <h2 class="section-title">Technical Arsenal</h2>
-          <p class="section-subtitle">Proficiencies, framework stacks, databases, and core computer science competencies.</p>
+          <p class="section-subtitle">Proficiencies, framework stacks, databases, and core computer science
+            competencies.</p>
         </div>
 
         <div class="skills-grid">
@@ -487,8 +516,11 @@
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <h4 style="font-size:0.82rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:0.6rem; letter-spacing:0.05em;">Frontend &amp; Apps</h4>
+              <h4
+                style="font-size:0.82rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:0.6rem; letter-spacing:0.05em;">
+                Frontend &amp; Apps</h4>
               <div class="tech-badges-grid">
+                <span class="tech-badge"><i class="fa-solid fa-mobile-screen"></i> Flutter</span>
                 <span class="tech-badge"><i class="fa-brands fa-react"></i> React</span>
                 <span class="tech-badge"><i class="fa-solid fa-sliders"></i> Streamlit</span>
                 <span class="tech-badge"><i class="fa-brands fa-html5"></i> HTML5 / CSS3</span>
@@ -497,7 +529,9 @@
             </div>
 
             <div style="margin-bottom: 1rem;">
-              <h4 style="font-size:0.82rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:0.6rem; letter-spacing:0.05em;">Backend &amp; Databases</h4>
+              <h4
+                style="font-size:0.82rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:0.6rem; letter-spacing:0.05em;">
+                Backend &amp; Databases</h4>
               <div class="tech-badges-grid">
                 <span class="tech-badge"><i class="fa-brands fa-node"></i> Node.js</span>
                 <span class="tech-badge"><i class="fa-solid fa-server"></i> Express.js</span>
@@ -508,7 +542,9 @@
             </div>
 
             <div>
-              <h4 style="font-size:0.82rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:0.6rem; letter-spacing:0.05em;">Engineering Soft Skills</h4>
+              <h4
+                style="font-size:0.82rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:0.6rem; letter-spacing:0.05em;">
+                Engineering Soft Skills</h4>
               <div class="tech-badges-grid">
                 <span class="tech-badge"><i class="fa-solid fa-check"></i> Problem Solving</span>
                 <span class="tech-badge"><i class="fa-solid fa-check"></i> Analytical Thinking</span>
@@ -522,7 +558,8 @@
 
         <!-- Coding Profiles Showcase (LeetCode & HackerRank) -->
         <div class="coding-profiles-grid">
-          <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer" class="glass-panel profile-card">
+          <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer"
+            class="glass-panel profile-card">
             <img src="assets/images/leetcode.png" alt="LeetCode Profile" class="profile-icon-img">
             <div class="profile-info">
               <h4>LeetCode Profile</h4>
@@ -531,7 +568,8 @@
             <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:auto; color:var(--neon-cyan);"></i>
           </a>
 
-          <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="glass-panel profile-card">
+          <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer"
+            class="glass-panel profile-card">
             <img src="assets/images/hackerrank.png" alt="HackerRank Profile" class="profile-icon-img">
             <div class="profile-info">
               <h4>HackerRank Certified</h4>
@@ -574,7 +612,8 @@
                     <span><i class="fa-solid fa-location-dot"></i> Bangalore, India</span>
                   </div>
                   <p class="timeline-desc">
-                    Actively researched web development paradigms, microservices architecture, and performed rigorous testing on cloud web services and scalable infrastructures.
+                    Actively researched web development paradigms, microservices architecture, and performed rigorous
+                    testing on cloud web services and scalable infrastructures.
                   </p>
                 </div>
               </div>
@@ -590,7 +629,8 @@
                     <span><i class="fa-solid fa-location-dot"></i> Systems Programming</span>
                   </div>
                   <p class="timeline-desc">
-                    Architected and developed modular C programming solutions, handling memory management, core algorithmic routines, and production-level low-level projects.
+                    Architected and developed modular C programming solutions, handling memory management, core
+                    algorithmic routines, and production-level low-level projects.
                   </p>
                 </div>
               </div>
@@ -618,7 +658,8 @@
                     <span class="timeline-gpa-badge">CGPA: 8.06</span>
                   </div>
                   <p class="timeline-desc">
-                    Specializing in core computer science, data structures, machine learning, software engineering principles, and operating systems.
+                    Specializing in core computer science, data structures, machine learning, software engineering
+                    principles, and operating systems.
                   </p>
                 </div>
               </div>
@@ -634,7 +675,8 @@
                     <span class="timeline-gpa-badge">Percentage: 94.67%</span>
                   </div>
                   <p class="timeline-desc">
-                    Strong foundation in Mathematics, Physics, Chemistry, and Computer Science with exceptional academic standing.
+                    Strong foundation in Mathematics, Physics, Chemistry, and Computer Science with exceptional academic
+                    standing.
                   </p>
                 </div>
               </div>
@@ -676,7 +718,8 @@
           <!-- Award 1: IIT Jammu -->
           <div class="glass-panel award-card">
             <div class="award-thumb-frame">
-              <img src="assets/images/IIT_jammu_cert.png" alt="IIT Jammu Anhad'25 UI/UX Design Challenge Winner" class="award-thumb">
+              <img src="assets/images/IIT_jammu_cert.png" alt="IIT Jammu Anhad'25 UI/UX Design Challenge Winner"
+                class="award-thumb">
               <div class="award-overlay">
                 <div class="award-zoom-icon">
                   <i class="fa-solid fa-expand"></i>
@@ -690,7 +733,8 @@
               </div>
               <h3 class="award-title">UI/UX Design Challenge &ndash; IIT Jammu</h3>
               <p class="award-desc">
-                As a key member of team <strong>ERROR FUSION</strong>, secured the Winner position at Anhad'25 organized by IIT Jammu, designing an intuitive AI-driven interface.
+                As a key member of team <strong>ERROR FUSION</strong>, secured the Winner position at Anhad'25 organized
+                by IIT Jammu, designing an intuitive AI-driven interface.
               </p>
             </div>
           </div>
@@ -698,7 +742,8 @@
           <!-- Award 2: Iotopia Hackathon -->
           <div class="glass-panel award-card">
             <div class="award-thumb-frame">
-              <img src="assets/images/iotopia_hackathon_cert.jpg" alt="Iotopia Hackathon 2nd Runner-up Certificate" class="award-thumb">
+              <img src="assets/images/iotopia_hackathon_cert.jpg" alt="Iotopia Hackathon 2nd Runner-up Certificate"
+                class="award-thumb">
               <div class="award-overlay">
                 <div class="award-zoom-icon">
                   <i class="fa-solid fa-expand"></i>
@@ -707,12 +752,15 @@
             </div>
             <div class="award-info">
               <div class="award-badge-row">
-                <span class="award-badge" style="color:var(--neon-cyan); border-color:rgba(6,182,212,0.4); background:rgba(6,182,212,0.1);"><i class="fa-solid fa-medal"></i> 2nd Runner-Up</span>
+                <span class="award-badge"
+                  style="color:var(--neon-cyan); border-color:rgba(6,182,212,0.4); background:rgba(6,182,212,0.1);"><i
+                    class="fa-solid fa-medal"></i> 2nd Runner-Up</span>
                 <span style="font-size:0.75rem; color:var(--text-dim); font-family:var(--font-mono);">350+ Teams</span>
               </div>
               <h3 class="award-title">Iotopia Hackathon</h3>
               <p class="award-desc">
-                Achieved 2nd runner-up position among 350+ competing teams at Reva University, Bangalore, pitching a connected IoT/AI software architecture.
+                Achieved 2nd runner-up position among 350+ competing teams at Reva University, Bangalore, pitching a
+                connected IoT/AI software architecture.
               </p>
             </div>
           </div>
@@ -720,7 +768,8 @@
           <!-- Award 3: NER Hackathon -->
           <div class="glass-panel award-card">
             <div class="award-thumb-frame">
-              <img src="assets/images/NER_cert.png" alt="NER Tech Hackathon 2.0 Top 14 Finalist Certificate" class="award-thumb">
+              <img src="assets/images/NER_cert.png" alt="NER Tech Hackathon 2.0 Top 14 Finalist Certificate"
+                class="award-thumb">
               <div class="award-overlay">
                 <div class="award-zoom-icon">
                   <i class="fa-solid fa-expand"></i>
@@ -729,12 +778,15 @@
             </div>
             <div class="award-info">
               <div class="award-badge-row">
-                <span class="award-badge" style="color:var(--neon-purple); border-color:rgba(168,85,247,0.4); background:rgba(168,85,247,0.1);"><i class="fa-solid fa-trophy"></i> Top 14 Finalist</span>
+                <span class="award-badge"
+                  style="color:var(--neon-purple); border-color:rgba(168,85,247,0.4); background:rgba(168,85,247,0.1);"><i
+                    class="fa-solid fa-trophy"></i> Top 14 Finalist</span>
                 <span style="font-size:0.75rem; color:var(--text-dim); font-family:var(--font-mono);">600+ Teams</span>
               </div>
               <h3 class="award-title">Pan India &ndash; NER Tech Hackathon 2.0</h3>
               <p class="award-desc">
-                Competed at the prestigious national hackathon at Marriott Bangalore, securing a Top 14 ranking among 600+ national developer teams.
+                Competed at the prestigious national hackathon at Marriott Bangalore, securing a Top 14 ranking among
+                600+ national developer teams.
               </p>
             </div>
           </div>
@@ -783,97 +835,124 @@
         <div class="section-header">
           <span class="section-tag font-mono">// GET_IN_TOUCH</span>
           <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
-          <p class="section-subtitle">Interested in working together or discussing engineering roles? Drop a message!</p>
+          <p class="section-subtitle">Looking for an enthusiastic engineer for software development or ML roles? Reach out directly through any channel below.</p>
         </div>
 
-        <div class="contact-grid">
+        <!-- Direct Contact Cards Grid -->
+        <div class="contact-cards-grid">
 
-          <!-- Left Details -->
-          <div class="glass-panel contact-info-card">
-            <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 1.5rem;">Contact Channels</h3>
-
-            <div class="contact-item">
-              <div class="contact-icon-box">
+          <!-- Card 1: Email -->
+          <div class="glass-panel contact-card">
+            <div class="contact-card-top">
+              <div class="contact-card-icon">
                 <i class="fa-regular fa-envelope"></i>
               </div>
               <div>
-                <div class="contact-label">Email Address</div>
-                <div class="contact-value">
-                  <a href="mailto:nagasumukh01@gmail.com">nagasumukh01@gmail.com</a>
-                  <button class="copy-badge-btn" data-copy="nagasumukh01@gmail.com" title="Copy email">Copy</button>
-                </div>
+                <span class="contact-card-subtitle">Primary Email</span>
+                <h3 class="contact-card-title">Email Me</h3>
               </div>
             </div>
+            <p class="contact-card-value font-mono">nagasumukh01@gmail.com</p>
+            <div class="contact-card-actions">
+              <button class="btn-primary" style="padding: 0.5rem 0.95rem; font-size: 0.82rem;" data-copy="nagasumukh01@gmail.com">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy</span>
+              </button>
+              <a href="mailto:nagasumukh01@gmail.com" class="btn-outline" style="padding: 0.5rem 0.95rem; font-size: 0.82rem;">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Open Mail</span>
+              </a>
+            </div>
+          </div>
 
-            <div class="contact-item">
-              <div class="contact-icon-box">
+          <!-- Card 2: Phone & WhatsApp -->
+          <div class="glass-panel contact-card">
+            <div class="contact-card-top">
+              <div class="contact-card-icon">
                 <i class="fa-solid fa-phone"></i>
               </div>
               <div>
-                <div class="contact-label">Phone</div>
-                <a href="tel:9448794069" class="contact-value">+91 9448794069</a>
+                <span class="contact-card-subtitle">Direct Phone</span>
+                <h3 class="contact-card-title">Call or WhatsApp</h3>
               </div>
             </div>
+            <p class="contact-card-value font-mono">+91 9448794069</p>
+            <div class="contact-card-actions">
+              <a href="tel:9448794069" class="btn-primary" style="padding: 0.5rem 0.95rem; font-size: 0.82rem;">
+                <i class="fa-solid fa-phone"></i>
+                <span>Call Now</span>
+              </a>
+              <a href="https://wa.me/919448794069" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding: 0.5rem 0.95rem; font-size: 0.82rem;">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
 
-            <div class="contact-item">
-              <div class="contact-icon-box">
+          <!-- Card 3: Location -->
+          <div class="glass-panel contact-card">
+            <div class="contact-card-top">
+              <div class="contact-card-icon">
                 <i class="fa-solid fa-location-dot"></i>
               </div>
               <div>
-                <div class="contact-label">Location</div>
-                <span class="contact-value">Bangalore, Karnataka, India</span>
+                <span class="contact-card-subtitle">Current Location</span>
+                <h3 class="contact-card-title">Bangalore, India</h3>
               </div>
             </div>
-
-            <div class="contact-item">
-              <div class="contact-icon-box">
-                <i class="fa-solid fa-cake-candles"></i>
-              </div>
-              <div>
-                <div class="contact-label">Date of Birth</div>
-                <span class="contact-value">14 July 2005</span>
-              </div>
-            </div>
-
-            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
-              <h4 style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.85rem; letter-spacing: 0.05em;">Social &amp; Coding Networks</h4>
-              <div style="display: flex; gap: 0.75rem;">
-                <a href="https://linkedin.com/in/nagasumukh-d-05423934a" target="_blank" rel="noopener noreferrer" class="btn-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer" class="btn-icon" title="LeetCode"><img src="assets/images/leetcode.png" alt="LeetCode" width="16" height="16"></a>
-                <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" title="HackerRank"><img src="assets/images/hackerrank.png" alt="HackerRank" width="16" height="16"></a>
-              </div>
+            <p class="contact-card-value">B.Tech CSE Undergrad at Reva University &bull; Available for on-site &amp; remote roles.</p>
+            <div class="contact-card-actions">
+              <span class="status-badge" style="margin-top: auto;">
+                <span class="status-dot"></span>
+                <span>Open to Relocate</span>
+              </span>
             </div>
           </div>
 
-          <!-- Right Form -->
-          <div class="glass-panel contact-form-card">
-            <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 1.5rem;">Send a Direct Message</h3>
-
-            <form id="contact-form">
-              <div class="form-group">
-                <label for="form-name" class="form-label">Your Name</label>
-                <input type="text" id="form-name" name="name" class="form-control" placeholder="e.g. John Doe" required>
+          <!-- Card 4: Networks -->
+          <div class="glass-panel contact-card">
+            <div class="contact-card-top">
+              <div class="contact-card-icon">
+                <i class="fa-solid fa-network-wired"></i>
               </div>
-
-              <div class="form-group">
-                <label for="form-email" class="form-label">Your Email</label>
-                <input type="email" id="form-email" name="email" class="form-control" placeholder="e.g. john@example.com" required>
+              <div>
+                <span class="contact-card-subtitle">Profiles</span>
+                <h3 class="contact-card-title">Social &amp; Coding</h3>
               </div>
-
-              <div class="form-group">
-                <label for="form-message" class="form-label">Your Message</label>
-                <textarea id="form-message" name="message" class="form-control" placeholder="Share your project idea, opportunity, or feedback..." required></textarea>
-              </div>
-
-              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>Send Message</span>
-              </button>
-            </form>
+            </div>
+            <p class="contact-card-value">Connect on LinkedIn, inspect GitHub repositories, or verify LeetCode &amp; HackerRank solutions.</p>
+            <div class="contact-card-actions" style="gap: 0.5rem;">
+              <a href="https://linkedin.com/in/nagasumukh-d-05423934a" target="_blank" rel="noopener noreferrer" class="btn-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer" class="btn-icon" title="LeetCode"><img src="assets/images/leetcode.png" alt="LeetCode" width="16" height="16"></a>
+              <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" title="HackerRank"><img src="assets/images/hackerrank.png" alt="HackerRank" width="16" height="16"></a>
+            </div>
           </div>
 
         </div>
+
+        <!-- High-Impact Direct CTA Banner -->
+        <div class="glass-panel contact-cta-banner">
+          <span class="status-badge">
+            <span class="status-dot"></span>
+            <span>Immediate Response Time</span>
+          </span>
+          <h3>Ready to build something impactful together?</h3>
+          <p>
+            Whether you have an internship role, an ambitious startup project, or would like to discuss Machine Learning and Full Stack development, feel free to drop an email or connect on LinkedIn.
+          </p>
+          <div class="contact-cta-buttons">
+            <a href="mailto:nagasumukh01@gmail.com" class="btn-primary">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Send Email Directly</span>
+            </a>
+            <a href="https://linkedin.com/in/nagasumukh-d-05423934a" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              <i class="fa-brands fa-linkedin-in"></i>
+              <span>Connect on LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -900,14 +979,19 @@
       </div>
 
       <div class="footer-socials">
-        <a href="https://linkedin.com/in/nagasumukh-d-05423934a" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="LeetCode"><img src="assets/images/leetcode.png" alt="LeetCode" width="16" height="16"></a>
-        <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="HackerRank"><img src="assets/images/hackerrank.png" alt="HackerRank" width="16" height="16"></a>
+        <a href="https://linkedin.com/in/nagasumukh-d-05423934a" target="_blank" rel="noopener noreferrer"
+          class="btn-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon"
+          aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer" class="btn-icon"
+          aria-label="LeetCode"><img src="assets/images/leetcode.png" alt="LeetCode" width="16" height="16"></a>
+        <a href="https://www.hackerrank.com/nagasumukh01" target="_blank" rel="noopener noreferrer" class="btn-icon"
+          aria-label="HackerRank"><img src="assets/images/hackerrank.png" alt="HackerRank" width="16" height="16"></a>
       </div>
 
       <p class="footer-copy">
-        &copy; 2026 D Nagasumukh &bull; B.Tech in CSE @ Reva University &bull; Built for maximum rendering performance &amp; zero cold-start delay.
+        &copy; 2026 D Nagasumukh &bull; B.Tech in CSE @ Reva University &bull; Built for maximum rendering performance
+        &amp; zero cold-start delay.
       </p>
     </div>
   </footer>
@@ -916,4 +1000,5 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/terminal.js"></script>
 </body>
+
 </html>
