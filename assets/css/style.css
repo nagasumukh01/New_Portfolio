@@ -535,10 +535,15 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-main);
   overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
 }
 
 body {
@@ -823,9 +828,7 @@ body {
 .hero-section {
   padding-top: 8rem;
   padding-bottom: 5rem;
-  min-height: 92vh;
-  display: flex;
-  align-items: center;
+  display: block;
 }
 
 .hero-grid {
