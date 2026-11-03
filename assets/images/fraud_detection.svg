@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Fraud detection dashboard illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07111f"/>
+      <stop offset="55%" stop-color="#102a43"/>
+      <stop offset="100%" stop-color="#1f3c88"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#17d1b2"/>
+      <stop offset="100%" stop-color="#7cf7d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="40" fill="url(#bg)"/>
+  <circle cx="160" cy="140" r="90" fill="#7c3aed" opacity="0.18"/>
+  <circle cx="1040" cy="640" r="140" fill="#17d1b2" opacity="0.14"/>
+  <rect x="110" y="130" width="980" height="540" rx="34" fill="#0d1728" opacity="0.88" stroke="#2c4a73" stroke-width="2"/>
+  <rect x="160" y="190" width="360" height="60" rx="18" fill="#17314f"/>
+  <rect x="160" y="280" width="250" height="22" rx="11" fill="#7aa7d9" opacity="0.55"/>
+  <rect x="160" y="320" width="430" height="22" rx="11" fill="#7aa7d9" opacity="0.38"/>
+  <rect x="160" y="360" width="320" height="22" rx="11" fill="#7aa7d9" opacity="0.38"/>
+  <rect x="160" y="430" width="260" height="130" rx="24" fill="#13263c" stroke="#2f5f88"/>
+  <rect x="450" y="430" width="260" height="130" rx="24" fill="#13263c" stroke="#2f5f88"/>
+  <rect x="740" y="430" width="260" height="130" rx="24" fill="#13263c" stroke="#2f5f88"/>
+  <path d="M515 495c0-52 42-94 94-94s94 42 94 94-42 94-94 94-94-42-94-94zm94-54c-30 0-54 24-54 54s24 54 54 54 54-24 54-54-24-54-54-54z" fill="url(#accent)" opacity="0.95"/>
+  <path d="M500 555l42-42 28 28 62-76 42 34-104 122z" fill="#7cf7d4"/>
+  <text x="600" y="110" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" text-anchor="middle" fill="#eaf4ff">Fraud Detection</text>
+  <text x="600" y="700" font-family="Segoe UI, Arial, sans-serif" font-size="28" text-anchor="middle" fill="#a7bed3">Explainable risk scoring dashboard</text>
+</svg>

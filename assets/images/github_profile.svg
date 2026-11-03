@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="GitHub profile card illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="40" fill="url(#bg)"/>
+  <circle cx="220" cy="170" r="120" fill="#7c3aed" opacity="0.15"/>
+  <circle cx="980" cy="620" r="160" fill="#34d399" opacity="0.12"/>
+  <rect x="120" y="120" width="960" height="560" rx="32" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <circle cx="600" cy="300" r="110" fill="url(#accent)" opacity="0.95"/>
+  <path d="M600 210c-58 0-105 47-105 105 0 46 30 85 71 99 5 1 7-2 7-5 0-3 0-11 0-22-29 6-35-12-35-12-5-13-12-16-12-16-10-7 1-7 1-7 11 1 17 11 17 11 10 17 27 12 34 9 1-7 4-12 7-15-23-3-46-12-46-53 0-12 4-23 11-31-1-3-5-15 1-31 0 0 9-3 32 12 9-2 19-3 29-3s20 1 29 3c23-15 32-12 32-12 6 16 2 28 1 31 7 8 11 19 11 31 0 41-23 50-46 53 4 4 8 11 8 22 0 16 0 29 0 33 0 3 2 6 7 5 41-14 71-53 71-99 0-58-47-105-105-105z" fill="#0f172a"/>
+  <text x="600" y="500" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="800" text-anchor="middle" fill="#e2e8f0">GitHub Profile</text>
+  <text x="600" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="28" text-anchor="middle" fill="#94a3b8">Repositories, code samples, and updates</text>
+  <rect x="420" y="610" width="360" height="10" rx="5" fill="url(#accent)"/>
+</svg>
