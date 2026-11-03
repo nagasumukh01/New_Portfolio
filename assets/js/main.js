@@ -361,20 +361,35 @@ function initLightbox() {
 
   if (!modal) return;
 
-  const awardCards = document.querySelectorAll('.award-card');
+  function openCertificate(imgSrc, titleText, descText) {
+    if (modalImg) modalImg.src = imgSrc;
+    if (modalTitle) modalTitle.textContent = titleText;
+    if (modalDesc) modalDesc.textContent = descText;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-  awardCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const img = card.querySelector('.award-thumb');
-      const title = card.querySelector('.award-title');
-      const desc = card.querySelector('.award-desc');
+  // Click on visual frame
+  document.querySelectorAll('.award-card').forEach(frame => {
+    frame.addEventListener('click', () => {
+      const img = frame.querySelector('.award-thumb');
+      const title = frame.getAttribute('data-title') || frame.closest('.podium-card')?.querySelector('.award-title')?.textContent || 'Certificate';
+      const desc = frame.getAttribute('data-desc') || frame.closest('.podium-card')?.querySelector('.award-desc')?.textContent || '';
+      if (img) openCertificate(img.src, title, desc);
+    });
+  });
 
-      if (img && modalImg) modalImg.src = img.src;
-      if (title && modalTitle) modalTitle.textContent = title.textContent;
-      if (desc && modalDesc) modalDesc.textContent = desc.textContent;
-
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+  // Click on action button
+  document.querySelectorAll('.award-card-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const parentCard = btn.closest('.podium-card');
+      if (!parentCard) return;
+      const img = parentCard.querySelector('.award-thumb');
+      const frame = parentCard.querySelector('.award-card');
+      const title = frame?.getAttribute('data-title') || parentCard.querySelector('.award-title')?.textContent || 'Certificate';
+      const desc = frame?.getAttribute('data-desc') || parentCard.querySelector('.award-desc')?.textContent || '';
+      if (img) openCertificate(img.src, title, desc);
     });
   });
 
