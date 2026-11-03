@@ -162,13 +162,36 @@
           </div>
         </div>
 
-        <!-- Hero Avatar Showcase -->
+        <!-- Hero Avatar Showcase with Live Neural Synapse Architecture -->
         <div class="hero-visual">
           <div class="avatar-container">
             <div class="avatar-ring"></div>
             <div class="avatar-ring-outer"></div>
             <div class="avatar-image-frame">
               <img src="assets/images/profile.png" alt="D Nagasumukh" class="avatar-img">
+            </div>
+          </div>
+
+          <!-- Live Feedforward Synapse Processing Core -->
+          <div class="hero-synapse-box font-mono">
+            <div class="synapse-header">
+              <span class="synapse-title"><i class="fa-solid fa-brain"></i> Neural Synapse Stream</span>
+              <span class="synapse-badge">[LIVE INFERENCE]</span>
+            </div>
+            <canvas id="hero-synapse-canvas"></canvas>
+            <div class="synapse-outputs">
+              <div class="synapse-out-item">
+                <span class="synapse-out-label">ML / AI</span>
+                <span id="synapse-out-ml" class="synapse-out-val">88%</span>
+              </div>
+              <div class="synapse-out-item">
+                <span class="synapse-out-label">Full Stack</span>
+                <span id="synapse-out-fs" class="synapse-out-val">76%</span>
+              </div>
+              <div class="synapse-out-item">
+                <span class="synapse-out-label">App Dev</span>
+                <span id="synapse-out-app" class="synapse-out-val">82%</span>
+              </div>
             </div>
           </div>
         </div>
@@ -181,7 +204,8 @@
         <div class="section-header">
           <span class="section-tag font-mono">// LIVE_SIMULATIONS</span>
           <h2 class="section-title">Interactive AI &amp; ML Laboratory</h2>
-          <p class="section-subtitle">Real-time browser-based machine learning simulations: test Explainable AI (XAI) feature attributions and 2D neural decision boundaries live.</p>
+          <p class="section-subtitle">Real-time browser-based machine learning simulations: test Explainable AI (XAI)
+            feature attributions and 2D neural decision boundaries live.</p>
         </div>
 
         <div class="ai-lab-wrapper">
@@ -207,7 +231,8 @@
                   <i class="fa-solid fa-sliders text-gradient-cyan"></i> Transaction Telemetry Controls
                 </h3>
                 <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                  Adjust behavioral telemetry parameters below to simulate how the model evaluates financial risk and explains decisions via SHAP attributions.
+                  Adjust behavioral telemetry parameters below to simulate how the model evaluates financial risk and
+                  explains decisions via SHAP attributions.
                 </p>
 
                 <!-- Amount Slider -->
@@ -222,7 +247,8 @@
                 <!-- Distance Slider -->
                 <div class="xai-slider-group">
                   <div class="xai-slider-header">
-                    <span class="xai-slider-label"><i class="fa-solid fa-location-crosshairs"></i> Geolocation Deviation:</span>
+                    <span class="xai-slider-label"><i class="fa-solid fa-location-crosshairs"></i> Geolocation
+                      Deviation:</span>
                     <span id="val-distance" class="xai-slider-val">1,250 km</span>
                   </div>
                   <input type="range" id="slider-distance" class="xai-slider" min="1" max="5000" step="25" value="1250">
@@ -248,7 +274,8 @@
 
                 <!-- Quick Preset Chips -->
                 <div class="xai-presets-row font-mono">
-                  <span style="font-size:0.75rem; color:var(--text-dim); display:flex; align-items:center;">Quick Scenarios:</span>
+                  <span style="font-size:0.75rem; color:var(--text-dim); display:flex; align-items:center;">Quick
+                    Scenarios:</span>
                   <button class="xai-preset-chip" data-preset="normal">Coffee Purchase ($45)</button>
                   <button class="xai-preset-chip" data-preset="overseas">Overseas Transfer ($4.8k)</button>
                   <button class="xai-preset-chip" data-preset="burst">High-Frequency Burst ($7.5k)</button>
@@ -265,7 +292,8 @@
                 <div class="xai-gauge-block">
                   <div class="xai-gauge-label">
                     <span>Model Fraud Probability</span>
-                    <span id="xai-risk-score" style="font-family:var(--font-mono); font-size:1.15rem; color:var(--text-main); font-weight:800;">58%</span>
+                    <span id="xai-risk-score"
+                      style="font-family:var(--font-mono); font-size:1.15rem; color:var(--text-main); font-weight:800;">58%</span>
                   </div>
                   <div class="xai-gauge-track">
                     <div id="xai-risk-bar" class="xai-gauge-fill" style="width: 58%;"></div>
@@ -322,7 +350,8 @@
 
                 <!-- Natural Language Explainability Box -->
                 <div id="xai-explanation" class="xai-explanation-box">
-                  <strong style="color:var(--neon-cyan);">XAI Synthesis:</strong> Risk probability elevated due to unrecognized device credentials and volume spikes.
+                  <strong style="color:var(--neon-cyan);">XAI Synthesis:</strong> Risk probability elevated due to
+                  unrecognized device credentials and volume spikes.
                 </div>
               </div>
 
@@ -337,7 +366,8 @@
               <div class="neural-canvas-container">
                 <canvas id="neural-boundary-canvas"></canvas>
                 <div class="neural-canvas-hint">
-                  <i class="fa-solid fa-hand-pointer"></i> Click anywhere on the boundary field to place live test samples!
+                  <i class="fa-solid fa-hand-pointer"></i> Click anywhere on the boundary field to place live test
+                  samples!
                 </div>
               </div>
 
@@ -348,24 +378,31 @@
                     <i class="fa-solid fa-brain text-gradient-cyan"></i> Neural Decision Classifier
                   </h3>
                   <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
-                    Visualizes how a multi-layer perceptron partitions non-linear feature space. The dashed contour line represents the 50% decision boundary separating Cluster Alpha (<span style="color:#06b6d4;">Cyan</span>) from Cluster Beta (<span style="color:#c084fc;">Violet</span>).
+                    Visualizes how a multi-layer perceptron partitions non-linear feature space. The dashed contour line
+                    represents the 50% decision boundary separating Cluster Alpha (<span
+                      style="color:#06b6d4;">Cyan</span>) from Cluster Beta (<span
+                      style="color:#c084fc;">Violet</span>).
                   </p>
                 </div>
 
                 <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
-                  <label for="neural-dataset-select" style="font-size: 0.82rem; font-weight: 600; color: var(--text-main);">Dataset Topology:</label>
-                  <select id="neural-dataset-select" class="form-control" style="width: auto; padding: 0.4rem 0.8rem; font-size: 0.82rem; background: #0c1322; border: 1px solid var(--border-subtle); color: var(--text-main); border-radius: 0.4rem;">
+                  <label for="neural-dataset-select"
+                    style="font-size: 0.82rem; font-weight: 600; color: var(--text-main);">Dataset Topology:</label>
+                  <select id="neural-dataset-select" class="form-control"
+                    style="width: auto; padding: 0.4rem 0.8rem; font-size: 0.82rem; background: #0c1322; border: 1px solid var(--border-subtle); color: var(--text-main); border-radius: 0.4rem;">
                     <option value="moons">Interlocking Moons (Non-Linear)</option>
                     <option value="circles">Concentric Rings (Radial)</option>
                     <option value="linear">Linear Clusters</option>
                   </select>
-                  <button id="neural-reset-btn" class="btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.82rem;">Reset Points</button>
+                  <button id="neural-reset-btn" class="btn-outline"
+                    style="padding: 0.4rem 0.8rem; font-size: 0.82rem;">Reset Points</button>
                 </div>
 
                 <div class="neural-metric-row">
                   <div class="neural-metric-box">
                     <div class="neural-metric-title">Network Architecture</div>
-                    <div class="neural-metric-value" style="color:var(--neon-cyan);">[2 &rarr; 8 &rarr; 4 &rarr; 1] MLP</div>
+                    <div class="neural-metric-value" style="color:var(--neon-cyan);">[2 &rarr; 8 &rarr; 4 &rarr; 1] MLP
+                    </div>
                   </div>
                   <div class="neural-metric-box">
                     <div class="neural-metric-title">Empirical Loss</div>
@@ -374,7 +411,8 @@
                 </div>
 
                 <div id="neural-point-prediction" class="neural-feedback-banner font-mono">
-                  <i class="fa-solid fa-circle-info" style="color:var(--neon-cyan);"></i> Click anywhere on the decision map above to test real-time classification probability!
+                  <i class="fa-solid fa-circle-info" style="color:var(--neon-cyan);"></i> Click anywhere on the decision
+                  map above to test real-time classification probability!
                 </div>
               </div>
 
@@ -452,6 +490,16 @@
           <span class="section-tag font-mono">// SHOWCASE</span>
           <h2 class="section-title">Featured Projects</h2>
           <p class="section-subtitle">Real-world systems, machine learning models, and live deployed applications.</p>
+        </div>
+
+        <!-- Recruiter AI Persona Filter Bar -->
+        <div class="ai-persona-bar font-mono">
+          <span style="font-size:0.75rem; color:var(--text-dim); display:flex; align-items:center; gap:0.4rem;">
+            <i class="fa-solid fa-brain" style="color:var(--neon-cyan);"></i> Recruiter Track:
+          </span>
+          <button class="persona-btn active" data-persona="all">All Tracks</button>
+          <button class="persona-btn" data-persona="ml">🧠 Machine Learning &amp; AI</button>
+          <button class="persona-btn" data-persona="web">💻 Full Stack &amp; Cloud</button>
         </div>
 
         <!-- Filter Tabs -->
@@ -768,6 +816,42 @@
 
         </div>
 
+        <!-- Latent Vector Embedding Space (Dimensionality Reduction & Semantic Similarity) -->
+        <div class="latent-space-wrapper glass-panel">
+          <div class="section-header" style="margin-bottom: 0.5rem; text-align: left;">
+            <span class="section-tag font-mono">// VECTOR_EMBEDDING_SPACE</span>
+            <h3 style="font-size: 1.5rem; font-weight: 800;">High-Dimensional Latent Space (PCA / t-SNE 2D Projection)</h3>
+            <p class="section-subtitle">Visualizing competencies as high-dimensional semantic vector embeddings projected onto 2D space. Hover or click nodes to measure live Cosine Similarity ($S_c$).</p>
+          </div>
+
+          <div class="latent-space-grid">
+            <div class="latent-canvas-box">
+              <canvas id="latent-space-canvas"></canvas>
+            </div>
+
+            <div class="latent-info-card">
+              <div class="latent-cluster-legend font-mono">
+                <div class="cluster-legend-item">
+                  <span class="cluster-dot dot-ml"></span>
+                  <span><strong>Cluster 0 (Cyan):</strong> Machine Learning &amp; Explainable AI</span>
+                </div>
+                <div class="cluster-legend-item">
+                  <span class="cluster-dot dot-web"></span>
+                  <span><strong>Cluster 1 (Violet):</strong> Full Stack Web &amp; Distributed APIs</span>
+                </div>
+                <div class="cluster-legend-item">
+                  <span class="cluster-dot dot-sys"></span>
+                  <span><strong>Cluster 2 (Emerald):</strong> Mobile (Flutter), Algorithms &amp; C Systems</span>
+                </div>
+              </div>
+
+              <div id="embedding-similarity-banner" class="embedding-similarity-banner font-mono">
+                Hover over any skill vector node to compute live cosine similarity and semantic nearest neighbors.
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Coding Profiles Showcase (LeetCode & HackerRank) -->
         <div class="coding-profiles-grid">
           <a href="https://leetcode.com/nagasumukh01/" target="_blank" rel="noopener noreferrer"
@@ -901,7 +985,7 @@
                   <div class="timeline-meta">
                     <span><i class="fa-solid fa-location-dot"></i> Chikmagalur, India</span>
                     <span>&bull;</span>
-                    <span class="timeline-gpa-badge">Percentage: 87.68%</span>
+                    <span class="timeline-gpa-badge">Percentage: 87.36%</span>
                   </div>
                   <p class="timeline-desc">
                     Completed high school curriculum with high honors and foundational science excellence.
@@ -1380,6 +1464,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/terminal.js"></script>
   <script src="assets/js/ai-lab.js"></script>
+  <script src="assets/js/ml-engine.js"></script>
 </body>
 
 </html>

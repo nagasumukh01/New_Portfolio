@@ -1022,14 +1022,250 @@ body {
 /* Hero Visual / Avatar Showcase */
 .hero-visual {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
   position: relative;
 }
 
 .avatar-container {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 270px;
+  height: 270px;
+}
+
+/* Live Feedforward Neural Synapse Box in Hero */
+.hero-synapse-box {
+  width: 100%;
+  max-width: 360px;
+  padding: 1rem 1.2rem;
+  border-radius: 0.85rem;
+  background: rgba(13, 21, 36, 0.85);
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(6, 182, 212, 0.15);
+}
+
+.synapse-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+}
+
+.synapse-title {
+  color: var(--neon-cyan);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.synapse-badge {
+  font-size: 0.68rem;
+  color: var(--neon-emerald);
+  animation: pulse-dot 1.8s infinite;
+}
+
+#hero-synapse-canvas {
+  width: 100%;
+  height: 130px;
+  display: block;
+  background: rgba(8, 12, 20, 0.6);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.synapse-outputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.synapse-out-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.4rem;
+}
+
+.synapse-out-label {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+}
+
+.synapse-out-val {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--neon-emerald);
+}
+
+[data-theme="light"] .hero-synapse-box {
+  background: #ffffff;
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] #hero-synapse-canvas {
+  background: #f8fafc;
+  border-color: rgba(203, 213, 225, 0.8);
+}
+[data-theme="light"] .synapse-out-item {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* ==========================================================================
+   LATENT EMBEDDING SPACE EXPLORER (SKILLS VECTOR PROJECTION)
+   ========================================================================== */
+.latent-space-wrapper {
+  margin-top: 3.5rem;
+  padding: 2.25rem;
+  border-radius: 1.25rem;
+  background: rgba(13, 21, 36, 0.7);
+  border: 1px solid var(--border-subtle);
+}
+
+.latent-space-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.latent-canvas-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#latent-space-canvas {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  aspect-ratio: 460 / 340;
+  border-radius: 0.85rem;
+  background: #080d18;
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  cursor: crosshair;
+}
+
+.latent-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.latent-cluster-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.cluster-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.cluster-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-ml { background: #06b6d4; box-shadow: 0 0 8px #06b6d4; }
+.dot-web { background: #a855f7; box-shadow: 0 0 8px #a855f7; }
+.dot-sys { background: #10b981; box-shadow: 0 0 8px #10b981; }
+
+.embedding-similarity-banner {
+  padding: 0.85rem 1rem;
+  border-radius: 0.6rem;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+[data-theme="light"] .latent-space-wrapper {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.4);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+}
+[data-theme="light"] #latent-space-canvas {
+  background: #f8fafc;
+  border-color: rgba(2, 132, 199, 0.35);
+}
+[data-theme="light"] .embedding-similarity-banner {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.3);
+  color: #0f172a;
+}
+
+/* AI Persona Adaptive Filtering Bar */
+.ai-persona-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+  padding: 0.65rem 1rem;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.persona-btn {
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+}
+
+.persona-btn:hover {
+  color: var(--neon-cyan);
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.persona-btn.active {
+  background: var(--neon-cyan);
+  color: #080c14;
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+}
+
+[data-theme="light"] .ai-persona-bar {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.4);
+}
+[data-theme="light"] .persona-btn {
+  color: #475569;
+}
+[data-theme="light"] .persona-btn.active {
+  background: #0284c7;
+  color: #ffffff;
 }
 
 .avatar-ring {
@@ -2800,7 +3036,8 @@ body {
     justify-content: center;
   }
   .xai-console-grid,
-  .neural-boundary-grid {
+  .neural-boundary-grid,
+  .latent-space-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
