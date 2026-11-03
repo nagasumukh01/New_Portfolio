@@ -255,9 +255,9 @@ function initNeuralCanvas() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       if (isLight) {
-        ctx.fillStyle = `rgba(2, 132, 199, ${this.baseAlpha * 0.7})`;
+        ctx.fillStyle = this.color.includes('182') ? `rgba(2, 132, 199, ${this.baseAlpha * 0.85})` : `rgba(124, 58, 237, ${this.baseAlpha * 0.85})`;
       } else {
-        ctx.fillStyle = `rgba(6, 182, 212, ${this.baseAlpha})`;
+        ctx.fillStyle = this.color + this.baseAlpha + ')';
       }
       ctx.fill();
     }
@@ -282,12 +282,12 @@ function initNeuralCanvas() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 130) {
-          const alpha = (1 - dist / 130) * (isLight ? 0.12 : 0.18);
+          const alpha = (1 - dist / 130) * (isLight ? 0.22 : 0.18);
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = isLight ? `rgba(2, 132, 199, ${alpha})` : `rgba(56, 189, 248, ${alpha})`;
-          ctx.lineWidth = 0.8;
+          ctx.lineWidth = isLight ? 1 : 0.8;
           ctx.stroke();
         }
       }
@@ -298,12 +298,12 @@ function initNeuralCanvas() {
         const dy = particles[i].y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < mouse.radius) {
-          const alpha = (1 - dist / mouse.radius) * (isLight ? 0.2 : 0.25);
+          const alpha = (1 - dist / mouse.radius) * (isLight ? 0.35 : 0.25);
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(mouse.x, mouse.y);
           ctx.strokeStyle = isLight ? `rgba(2, 132, 199, ${alpha})` : `rgba(6, 182, 212, ${alpha})`;
-          ctx.lineWidth = 1;
+          ctx.lineWidth = 1.2;
           ctx.stroke();
         }
       }

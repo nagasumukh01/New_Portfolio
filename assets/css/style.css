@@ -26,18 +26,18 @@
 }
 
 /* ==========================================================================
-   LIGHT THEME VARIABLES & OVERRIDES
+   CYBER-BLUEPRINT LIGHT THEME (HIGH-TECH, PRECISION ENGINEERING AESTHETIC)
    ========================================================================== */
 [data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: rgba(255, 255, 255, 0.88);
-  --bg-card-hover: #ffffff;
-  --border-subtle: rgba(203, 213, 225, 0.75);
-  --border-glow: rgba(2, 132, 199, 0.35);
+  --bg-primary: #f0f4f9;
+  --bg-secondary: #e2e8f0;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --border-subtle: rgba(148, 163, 184, 0.35);
+  --border-glow: rgba(2, 132, 199, 0.5);
   
   --text-main: #0f172a;
-  --text-muted: #475569;
+  --text-muted: #334155;
   --text-dim: #64748b;
   
   --neon-cyan: #0284c7;
@@ -47,36 +47,57 @@
   --neon-amber: #d97706;
 }
 
+/* Technical Precision Blueprint Grid Background */
 [data-theme="light"] body {
-  background-color: var(--bg-primary);
+  background-color: #f0f4f9;
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(2, 132, 199, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 75%, rgba(124, 58, 237, 0.07) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.04) 0%, transparent 50%);
+    linear-gradient(to right, rgba(2, 132, 199, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2, 132, 199, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 12% 15%, rgba(6, 182, 212, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 88% 75%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.06) 0%, transparent 55%);
+  background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
 }
 
 [data-theme="light"] ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
 [data-theme="light"] ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #94a3b8;
+  border-radius: 4px;
 }
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: #0284c7;
 }
 
+/* Navbar */
 [data-theme="light"] .navbar {
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+  background: rgba(248, 250, 252, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(2, 132, 199, 0.2);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
 }
 
 [data-theme="light"] .nav-brand {
   color: #0f172a;
 }
 
+[data-theme="light"] .brand-avatar {
+  border-color: #0284c7;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.4);
+}
+
+[data-theme="light"] .brand-tag {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
 [data-theme="light"] .nav-link {
-  color: #475569;
+  color: #334155;
+  font-weight: 600;
 }
 
 [data-theme="light"] .nav-link:hover,
@@ -84,63 +105,189 @@
   color: #0284c7;
 }
 
+[data-theme="light"] .nav-link::after {
+  background: #0284c7;
+}
+
 [data-theme="light"] .btn-icon {
-  background: rgba(241, 245, 249, 0.9);
-  border-color: rgba(203, 213, 225, 0.8);
-  color: #334155;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  color: #1e293b;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .btn-icon:hover {
   background: #ffffff;
   color: #0284c7;
   border-color: #0284c7;
-  box-shadow: 0 0 10px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.35);
+  transform: translateY(-2px);
 }
 
-[data-theme="light"] .glass-panel {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(226, 232, 240, 0.9);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+/* Metallic Tech Text Gradient */
+[data-theme="light"] .text-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #0369a1 45%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-[data-theme="light"] .glass-panel:hover {
-  border-color: rgba(2, 132, 199, 0.5);
-  box-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.15);
+[data-theme="light"] .hero-greeting {
+  color: #0284c7;
+  font-weight: 700;
+}
+
+[data-theme="light"] .tagline-static {
+  color: #64748b;
+}
+
+[data-theme="light"] .tagline-typed {
+  color: #0284c7;
+  border-bottom: 2px solid rgba(2, 132, 199, 0.5);
+  font-weight: 700;
+}
+
+[data-theme="light"] .typing-cursor {
+  color: #0284c7;
+}
+
+[data-theme="light"] .hero-bio {
+  color: #1e293b;
+}
+
+[data-theme="light"] .status-badge {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #047857;
+  font-weight: 600;
 }
 
 [data-theme="light"] .metric-pill {
-  background: #ffffff;
-  border-color: rgba(203, 213, 225, 0.8);
-  color: #1e293b;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  font-weight: 500;
 }
 
+[data-theme="light"] .metric-pill i {
+  color: #0284c7;
+}
+
+/* Glass Panels with Precision Rim Lighting */
+[data-theme="light"] .glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.03), 
+    0 2px 4px -2px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="light"] .glass-panel:hover {
+  border-color: rgba(2, 132, 199, 0.6);
+  box-shadow: 
+    0 15px 35px -5px rgba(2, 132, 199, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-4px);
+}
+
+/* Section Header Badges */
+[data-theme="light"] .section-tag {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  font-weight: 700;
+}
+
+[data-theme="light"] .section-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .section-subtitle {
+  color: #475569;
+}
+
+/* Terminal Window in Light Mode (Authentic High-Contrast Dark Console) */
+[data-theme="light"] .terminal-window {
+  background: #090e18;
+  border: 1px solid rgba(2, 132, 199, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.3), 0 0 25px rgba(2, 132, 199, 0.25);
+}
+
+[data-theme="light"] .terminal-header {
+  background: #0f172a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .terminal-title {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .chip-btn {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+}
+
+[data-theme="light"] .chip-btn:hover {
+  background: #38bdf8;
+  color: #090e18;
+}
+
+[data-theme="light"] .cmd-prompt {
+  color: #34d399;
+}
+
+[data-theme="light"] .cmd-text {
+  color: #f8fafc;
+}
+
+[data-theme="light"] .cmd-response {
+  color: #cbd5e1;
+}
+
+/* Project Cards in Light Mode */
 [data-theme="light"] .project-card {
-  background: #ffffff;
-  border-color: rgba(226, 232, 240, 0.9);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 4px 15px -3px rgba(15, 23, 42, 0.05);
 }
 
 [data-theme="light"] .project-card:hover {
-  box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.2);
+  border-color: rgba(2, 132, 199, 0.6);
+  box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.22);
+  transform: translateY(-6px);
+}
+
+[data-theme="light"] .project-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .project-desc {
+  color: #334155;
+}
+
+[data-theme="light"] .project-tag {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  font-weight: 600;
 }
 
 [data-theme="light"] .project-status-tag {
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(5, 150, 105, 0.35);
-  color: #059669;
-}
-
-[data-theme="light"] .project-tag {
-  background: rgba(2, 132, 199, 0.08);
-  color: #0284c7;
-  border-color: rgba(2, 132, 199, 0.2);
+  color: #047857;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="light"] .filter-btn {
   background: #ffffff;
-  border-color: rgba(203, 213, 225, 0.85);
-  color: #475569;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: #334155;
+  font-weight: 600;
 }
 
 [data-theme="light"] .filter-btn:hover,
@@ -148,22 +295,79 @@
   background: #0284c7;
   color: #ffffff;
   border-color: #0284c7;
-  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35);
+}
+
+/* Skills in Light Mode */
+[data-theme="light"] .category-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .category-icon {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+}
+
+[data-theme="light"] .skill-name {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+[data-theme="light"] .skill-percent {
+  color: #0284c7;
+  font-weight: 700;
+}
+
+[data-theme="light"] .skill-bar-track {
+  background: #e2e8f0;
+}
+
+[data-theme="light"] .skill-bar-fill {
+  background: linear-gradient(90deg, #0284c7 0%, #6366f1 100%);
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.4);
 }
 
 [data-theme="light"] .tech-badge {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #1e293b;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .tech-badge:hover {
   background: rgba(2, 132, 199, 0.1);
   border-color: #0284c7;
+  color: #0284c7;
 }
 
-[data-theme="light"] .skill-bar-track {
-  background: #e2e8f0;
+[data-theme="light"] .tech-badge i {
+  color: #0284c7;
+}
+
+/* Coding Profiles in Light Mode */
+[data-theme="light"] .profile-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+[data-theme="light"] .profile-card:hover {
+  border-color: #0284c7;
+  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="light"] .profile-info h4 {
+  color: #0f172a;
+}
+
+[data-theme="light"] .profile-info p {
+  color: #475569;
+}
+
+/* Timeline in Light Mode */
+[data-theme="light"] .timeline-column-title {
+  color: #0284c7;
 }
 
 [data-theme="light"] .timeline::before {
@@ -173,22 +377,85 @@
 [data-theme="light"] .timeline-node {
   background: #ffffff;
   border-color: #0284c7;
-  box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
 }
 
-[data-theme="light"] .footer {
-  background: #f1f5f9;
-  border-top: 1px solid rgba(226, 232, 240, 0.9);
+[data-theme="light"] .timeline-role {
+  color: #0f172a;
 }
 
-[data-theme="light"] .footer-copy {
+[data-theme="light"] .timeline-company {
+  color: #0284c7;
+}
+
+[data-theme="light"] .timeline-meta {
   color: #64748b;
 }
 
+[data-theme="light"] .timeline-desc {
+  color: #334155;
+}
+
+[data-theme="light"] .timeline-gpa-badge {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+/* Awards in Light Mode */
+[data-theme="light"] .award-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .award-desc {
+  color: #334155;
+}
+
+[data-theme="light"] .cert-name {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Contact Cards in Light Mode */
+[data-theme="light"] .contact-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+[data-theme="light"] .contact-card-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .contact-card-value {
+  color: #334155;
+}
+
+[data-theme="light"] .contact-card-icon {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+[data-theme="light"] .contact-cta-banner {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(2, 132, 199, 0.4);
+  box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.15);
+}
+
+[data-theme="light"] .contact-cta-banner h3 {
+  color: #0f172a;
+}
+
+[data-theme="light"] .contact-cta-banner p {
+  color: #334155;
+}
+
+/* Buttons in Light Mode */
 [data-theme="light"] .btn-outline {
   background: #ffffff;
-  border-color: #cbd5e1;
-  color: #1e293b;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .btn-outline:hover {
@@ -198,9 +465,9 @@
 }
 
 [data-theme="light"] .btn-project-secondary {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #475569;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: #334155;
 }
 
 [data-theme="light"] .btn-project-secondary:hover {
@@ -208,15 +475,44 @@
   border-color: #0284c7;
 }
 
+/* Avatar Cyber Frame in Light Mode */
+[data-theme="light"] .avatar-ring {
+  border: 2px dashed rgba(2, 132, 199, 0.6);
+}
+
+[data-theme="light"] .avatar-ring-outer {
+  border: 1px solid rgba(124, 58, 237, 0.4);
+}
+
+[data-theme="light"] .avatar-image-frame {
+  border: 3px solid rgba(2, 132, 199, 0.7);
+  box-shadow: 0 0 35px rgba(2, 132, 199, 0.3), 0 15px 30px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+
+/* Footer & Modals in Light Mode */
+[data-theme="light"] .footer {
+  background: #f8fafc;
+  border-top: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="light"] .footer-copy {
+  color: #64748b;
+}
+
 [data-theme="light"] .modal-dialog {
   background: #ffffff;
-  border-color: rgba(203, 213, 225, 0.9);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(2, 132, 199, 0.4);
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.3);
 }
 
 [data-theme="light"] .modal-header {
   background: #f8fafc;
   border-bottom: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .modal-title {
+  color: #0f172a;
 }
 
 [data-theme="light"] .modal-close-btn {
@@ -227,15 +523,8 @@
   color: #0284c7;
 }
 
-[data-theme="light"] .copy-badge-btn {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #475569;
-}
-
-[data-theme="light"] .copy-badge-btn:hover {
-  color: #0284c7;
-  border-color: #0284c7;
+[data-theme="light"] .modal-caption {
+  color: #334155;
 }
 
 *, *::before, *::after {
