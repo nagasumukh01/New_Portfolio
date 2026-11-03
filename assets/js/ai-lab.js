@@ -413,3 +413,4 @@ function initNeuralBoundary() {
   generateDataset(currentDataset);
   draw();
 }
+

@@ -36,6 +36,9 @@
 
 <body>
 
+  <!-- Top Reading Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress"></div>
+
   <!-- Background Interactive Neural Tech Canvas -->
   <canvas id="neural-canvas"></canvas>
 
@@ -79,9 +82,30 @@
         <button class="btn-icon" data-copy="nagasumukh01@gmail.com" title="Copy Email Address" aria-label="Copy Email">
           <i class="fa-regular fa-envelope"></i>
         </button>
-        <button class="btn-icon" id="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
-          <i class="fa-solid fa-sun" id="theme-icon"></i>
+
+        <!-- Sound FX Audio Toggle -->
+        <button class="sound-toggle-btn" id="sound-toggle-btn" title="Toggle Audio Feedback" aria-label="Toggle Sound Effects">
+          <i class="fa-solid fa-volume-high" id="sound-icon"></i>
         </button>
+
+        <!-- Unique Cyber Celestial Day/Night Capsule Switch -->
+        <div class="cyber-theme-switch" id="cyber-theme-switch" role="button" tabindex="0" aria-label="Toggle Light and Dark Mode" title="Switch Theme (Day / Night)">
+          <div class="switch-track"></div>
+          <div class="switch-stars">
+            <span class="switch-star switch-star-1"></span>
+            <span class="switch-star switch-star-2"></span>
+            <span class="switch-star switch-star-3"></span>
+          </div>
+          <div class="switch-clouds">
+            <span class="switch-cloud switch-cloud-1"></span>
+            <span class="switch-cloud switch-cloud-2"></span>
+          </div>
+          <div class="switch-thumb">
+            <span class="crater crater-1"></span>
+            <span class="crater crater-2"></span>
+            <span class="crater crater-3"></span>
+          </div>
+        </div>
 
         <button class="mobile-toggle" aria-label="Toggle navigation menu">
           <i class="fa-solid fa-bars"></i>
@@ -134,7 +158,7 @@
           <div class="hero-metrics">
             <div class="metric-pill">
               <i class="fa-solid fa-graduation-cap"></i>
-              <span>Reva University (8.06 CGPA)</span>
+              <span>Reva University (<strong class="stat-counter" data-target="8.06" data-decimals="2">8.06</strong> CGPA)</span>
             </div>
             <div class="metric-pill">
               <i class="fa-solid fa-trophy"></i>
@@ -142,7 +166,7 @@
             </div>
             <div class="metric-pill">
               <i class="fa-solid fa-bolt"></i>
-              <span>Top 14, NER Hackathon (600+ Teams)</span>
+              <span>Top 14, NER Hackathon (<strong class="stat-counter" data-target="600">600</strong>+ Teams)</span>
             </div>
           </div>
 
@@ -155,9 +179,13 @@
               <i class="fa-solid fa-rocket"></i>
               <span>Explore Projects</span>
             </a>
+            <button id="view-resume-btn" class="btn-outline">
+              <i class="fa-regular fa-file-lines"></i>
+              <span>View Resume (CV)</span>
+            </button>
             <a href="#terminal" class="btn-outline">
               <i class="fa-solid fa-terminal"></i>
-              <span>Run Terminal</span>
+              <span>Terminal</span>
             </a>
           </div>
         </div>
@@ -541,6 +569,10 @@
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   <span>Launch Live App</span>
                 </a>
+                <button class="btn-project-spec" data-spec="fraud" title="View Model Architecture & Pipeline Specs">
+                  <i class="fa-solid fa-microchip"></i>
+                  <span>Specs</span>
+                </button>
                 <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer"
                   class="btn-project-secondary" title="View Source on GitHub">
                   <i class="fa-brands fa-github"></i>
@@ -576,6 +608,10 @@
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   <span>Launch Live App</span>
                 </a>
+                <button class="btn-project-spec" data-spec="ats" title="View NLP Pipeline & Architecture">
+                  <i class="fa-solid fa-microchip"></i>
+                  <span>Specs</span>
+                </button>
                 <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer"
                   class="btn-project-secondary" title="View Source on GitHub">
                   <i class="fa-brands fa-github"></i>
@@ -612,6 +648,10 @@
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   <span>Launch Live App</span>
                 </a>
+                <button class="btn-project-spec" data-spec="research" title="View RAG & LLM Document Specs">
+                  <i class="fa-solid fa-microchip"></i>
+                  <span>Specs</span>
+                </button>
                 <a href="https://github.com/nagasumukh01" target="_blank" rel="noopener noreferrer"
                   class="btn-project-secondary" title="View Source on GitHub">
                   <i class="fa-brands fa-github"></i>
@@ -951,7 +991,7 @@
                   <div class="timeline-meta">
                     <span><i class="fa-regular fa-calendar"></i> 09/2023 &ndash; Present</span>
                     <span>&bull;</span>
-                    <span class="timeline-gpa-badge">CGPA: 8.06</span>
+                    <span class="timeline-gpa-badge">CGPA: <span class="stat-counter" data-target="8.06" data-decimals="2">8.06</span></span>
                   </div>
                   <p class="timeline-desc">
                     Specializing in core computer science, data structures, machine learning, software engineering
@@ -968,7 +1008,7 @@
                   <div class="timeline-meta">
                     <span><i class="fa-solid fa-location-dot"></i> Chikmagalur, India</span>
                     <span>&bull;</span>
-                    <span class="timeline-gpa-badge">Percentage: 94.67%</span>
+                    <span class="timeline-gpa-badge">Percentage: <span class="stat-counter" data-target="94.67" data-decimals="2">94.67</span>%</span>
                   </div>
                   <p class="timeline-desc">
                     Strong foundation in Mathematics, Physics, Chemistry, and Computer Science with exceptional academic
@@ -985,7 +1025,7 @@
                   <div class="timeline-meta">
                     <span><i class="fa-solid fa-location-dot"></i> Chikmagalur, India</span>
                     <span>&bull;</span>
-                    <span class="timeline-gpa-badge">Percentage: 87.36%</span>
+                    <span class="timeline-gpa-badge">Percentage: <span class="stat-counter" data-target="87.36" data-decimals="2">87.36</span>%</span>
                   </div>
                   <p class="timeline-desc">
                     Completed high school curriculum with high honors and foundational science excellence.
@@ -1434,6 +1474,107 @@
       </div>
     </div>
   </div>
+
+  <!-- PROJECT ARCHITECTURE & MODEL SPECS MODAL -->
+  <div id="spec-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-dialog" style="max-width: 720px;">
+      <div class="modal-header">
+        <h3 id="spec-modal-title" class="modal-title font-mono" style="display:flex; align-items:center; gap:0.5rem;">
+          <i class="fa-solid fa-microchip text-gradient-cyan"></i>
+          <span>System Architecture &amp; ML Specs</span>
+        </h3>
+        <button id="spec-modal-close" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: left; padding: 1.5rem 1.75rem;">
+        <div id="spec-modal-content">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE RESUME QUICK-VIEW MODAL -->
+  <div id="resume-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+    <div class="modal-dialog" style="max-width: 820px;">
+      <div class="modal-header">
+        <h3 id="resume-modal-title" class="modal-title font-mono" style="display:flex; align-items:center; gap:0.5rem;">
+          <i class="fa-solid fa-file-invoice text-gradient-cyan"></i>
+          <span>D Nagasumukh &bull; Curriculum Vitae</span>
+        </h3>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button id="print-resume-btn" class="btn-icon" title="Print / Save PDF" style="width:32px; height:32px; font-size:0.8rem;">
+            <i class="fa-solid fa-print"></i>
+          </button>
+          <button id="resume-modal-close" class="modal-close-btn" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="resume-sheet font-mono">
+        <div class="resume-header-block">
+          <h2 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.2rem;">D NAGASUMUKH</h2>
+          <div style="color: var(--neon-cyan); font-size: 0.88rem; font-weight: 600; margin-bottom: 0.4rem;">
+            Full Stack Developer | Machine Learning Engineer | App Developer
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 0.85rem;">
+            <span><i class="fa-regular fa-envelope"></i> nagasumukh01@gmail.com</span>
+            <span><i class="fa-solid fa-phone"></i> +91 9448794069</span>
+            <span><i class="fa-solid fa-location-dot"></i> Bangalore, India</span>
+          </div>
+        </div>
+
+        <h4 class="resume-section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h4>
+        <div style="margin-bottom: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--text-main);">
+            <span>B.Tech in Computer Science &amp; Engineering</span>
+            <span style="color: var(--neon-emerald);">CGPA: 8.06 / 10.0</span>
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-dim);">Reva University, Bangalore &bull; 09/2023 &ndash; Present</div>
+        </div>
+        <div style="margin-bottom: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--text-main);">
+            <span>Pre-University Course (PUC)</span>
+            <span style="color: var(--neon-emerald);">94.67%</span>
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-dim);">Sri Sai Angels Pre University College, Chikmagalur</div>
+        </div>
+
+        <h4 class="resume-section-title"><i class="fa-solid fa-briefcase"></i> Experience</h4>
+        <div style="margin-bottom: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--text-main);">
+            <span>R&amp;D Intern &bull; DevCreations &amp; Solutions (Reva Nest)</span>
+            <span style="color: var(--text-dim); font-size: 0.8rem;">07/2025 &ndash; 01/2026</span>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">Researched web development architecture, performed cloud web service reliability testing, and evaluated microservice APIs.</p>
+        </div>
+        <div style="margin-bottom: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--text-main);">
+            <span>C Program Intern &bull; PINNACLE</span>
+            <span style="color: var(--text-dim); font-size: 0.8rem;">05/2025 &ndash; 06/2025</span>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">Engineered low-level algorithmic structures, memory-safe data structures, and foundational systems code.</p>
+        </div>
+
+        <h4 class="resume-section-title"><i class="fa-solid fa-trophy"></i> Key Achievements</h4>
+        <ul style="padding-left: 1.2rem; font-size: 0.82rem; color: var(--text-muted);">
+          <li><strong>Winner</strong> &ndash; UI/UX Design Challenge at IIT Jammu Anhad'25 (Team ERROR FUSION).</li>
+          <li><strong>2nd Runner-up</strong> &ndash; Iotopia Hackathon at Reva University (350+ Competing Teams).</li>
+          <li><strong>Top 14 Finalist</strong> &ndash; Pan India NER Tech Hackathon 2.0 at Marriott Bangalore (600+ Teams).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING QUICK-NAV HUD DOCK -->
+  <nav class="floating-hud-dock font-mono" aria-label="Floating Navigation Dock">
+    <a href="#home" class="hud-item active" title="Home"><i class="fa-solid fa-house"></i></a>
+    <a href="#ai-lab" class="hud-item" title="Interactive AI Lab"><i class="fa-solid fa-brain"></i></a>
+    <a href="#projects" class="hud-item" title="Featured Projects"><i class="fa-solid fa-rocket"></i></a>
+    <a href="#terminal" class="hud-item" title="Developer Terminal"><i class="fa-solid fa-terminal"></i></a>
+    <a href="#skills" class="hud-item" title="Technical Arsenal"><i class="fa-solid fa-code"></i></a>
+    <a href="#experience" class="hud-item" title="Experience &amp; Education"><i class="fa-solid fa-briefcase"></i></a>
+    <a href="#awards" class="hud-item" title="Trophy Hall of Fame"><i class="fa-solid fa-trophy"></i></a>
+    <span class="hud-divider"></span>
+    <a href="#contact" class="hud-item" title="Get In Touch"><i class="fa-regular fa-envelope"></i></a>
+  </nav>
 
   <!-- FOOTER -->
   <footer class="footer">

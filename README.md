@@ -27,9 +27,9 @@ Built to replace slow-booting server-dependent setups with a **zero-cold-start, 
   - Interactive proficiency indicators for Python, C, SQL, Java, DSA, UI/UX, ML, and Web stacks.
   - Direct badges for **LeetCode** and **HackerRank** profiles.
 - **Experience & Education Timeline**:
-  - R&D Intern @ DevCreations & Solutions (Reva Nest)
+  - R&D Intern @ DevCreations & Solutions
   - C Program Intern @ PINNACLE
-  - B.Tech CSE @ Reva University (CGPA: 8.06), PUC (94.67%), SSLC (87.68%).
+  - B.Tech CSE @ Reva University (CGPA: 8.06), PUC (94.67%), SSLC (87.36%).
 - **Awards & Certifications Lightbox Gallery**:
   - Winner @ IIT Jammu Anhad'25 UI/UX Design Challenge (`IIT_jammu_cert.png`)
   - 2nd Runner-up @ Iotopia Hackathon (`iotopia_hackathon_cert.jpg`)
@@ -104,3 +104,4 @@ New Portfolio/
 │       └── hackerrank.png      # HackerRank platform icon
 └── README.md
 ```
+

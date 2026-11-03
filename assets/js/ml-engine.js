@@ -455,3 +455,4 @@ function initAdaptiveRecommender() {
     });
   });
 }
+

@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     experience: () => `
 <span style="color:var(--neon-cyan)">INTERNSHIP EXPERIENCE:</span>
-1. <span style="color:#38bdf8">R&D Intern</span> @ DevCreations & Solutions, Reva Nest (07/2025 - 01/2026)
+1. <span style="color:#38bdf8">R&D Intern</span> @ DevCreations & Solutions (07/2025 - 01/2026)
    - Research on web engineering, performance testing, and cloud microservices.
 
 2. <span style="color:#38bdf8">C Program Intern</span> @ PINNACLE (05/2025 - 06/2025)
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Echo command line
     const outputContainer = document.getElementById('terminal-history');
-    
+
     if (cmd === 'clear') {
       if (outputContainer) outputContainer.innerHTML = '';
       terminalInput.value = '';
@@ -149,3 +149,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+

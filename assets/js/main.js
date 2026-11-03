@@ -14,13 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
   initClipboardActions();
   initMobileNav();
   initScrollSpy();
+  initScrollProgressBar();
+  initSoundFX();
+  initAnimatedCounters();
+  initProjectSpecsModal();
+  initResumeModal();
+  initFloatingHud();
 });
 
 /* ==========================================================================
    1. LIGHT / DARK THEME TOGGLE WITH LOCALSTORAGE PERSISTENCE
+   Handles both the unique celestial day/night switch and standard buttons
    ========================================================================== */
 function initThemeToggle() {
-  const themeBtn = document.getElementById('theme-toggle-btn');
+  const themeSwitch = document.getElementById('cyber-theme-switch') || document.getElementById('theme-toggle-btn');
   const themeIcon = document.getElementById('theme-icon');
   
   // Check stored theme or default to dark
@@ -28,29 +35,41 @@ function initThemeToggle() {
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
 
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('portfolio-theme', newTheme);
-      updateThemeIcon(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('portfolio-theme', newTheme);
+    updateThemeIcon(newTheme);
 
-      showToast(`Switched to ${newTheme === 'dark' ? 'Dark' : 'Light'} Mode`);
+    if (window.playUiSound) window.playUiSound('toggle');
+    showToast(`Switched to ${newTheme === 'dark' ? 'Cyber Dark' : 'Technical Light'} Mode`);
+  }
+
+  if (themeSwitch) {
+    themeSwitch.addEventListener('click', toggleTheme);
+    themeSwitch.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleTheme();
+      }
     });
   }
 
   function updateThemeIcon(theme) {
-    if (!themeIcon) return;
-    if (theme === 'light') {
-      themeIcon.classList.remove('fa-sun');
-      themeIcon.classList.add('fa-moon');
-      themeBtn?.setAttribute('title', 'Switch to Dark Mode');
-    } else {
-      themeIcon.classList.remove('fa-moon');
-      themeIcon.classList.add('fa-sun');
-      themeBtn?.setAttribute('title', 'Switch to Light Mode');
+    if (themeIcon) {
+      if (theme === 'light') {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      } else {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+    }
+    if (themeSwitch) {
+      themeSwitch.setAttribute('title', theme === 'dark' ? 'Switch to Light Mode (Day)' : 'Switch to Dark Mode (Night)');
+      themeSwitch.setAttribute('aria-checked', theme === 'light' ? 'true' : 'false');
     }
   }
 }
@@ -506,3 +525,431 @@ function initScrollSpy() {
     });
   });
 }
+
+/* ==========================================================================
+   10. TOP SCROLL READING PROGRESS BAR
+   ========================================================================== */
+function initScrollProgressBar() {
+  const progressBar = document.getElementById('scroll-progress');
+  if (!progressBar) return;
+
+  function updateProgress() {
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollHeight <= 0) return;
+    const progress = (window.scrollY / scrollHeight) * 100;
+    progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+}
+
+/* ==========================================================================
+   11. PROCEDURAL SOUND FX (WEB AUDIO API - ZERO LAG, NO ASSET DOWNLOADS)
+   Subtle futuristic UI audio clicks with user mute control
+   ========================================================================== */
+let audioCtx = null;
+let soundEnabled = localStorage.getItem('portfolio-sound-enabled') === 'true';
+
+function initSoundFX() {
+  const soundBtn = document.getElementById('sound-toggle-btn');
+  const soundIcon = document.getElementById('sound-icon');
+
+  function updateSoundIcon() {
+    if (!soundIcon) return;
+    if (soundEnabled) {
+      soundIcon.className = 'fa-solid fa-volume-high';
+      soundBtn?.setAttribute('title', 'Mute Sound Effects');
+      soundBtn?.classList.add('active');
+    } else {
+      soundIcon.className = 'fa-solid fa-volume-xmark';
+      soundBtn?.setAttribute('title', 'Enable Sound Effects');
+      soundBtn?.classList.remove('active');
+    }
+  }
+
+  updateSoundIcon();
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('portfolio-sound-enabled', soundEnabled ? 'true' : 'false');
+      updateSoundIcon();
+
+      if (soundEnabled) {
+        playUiSound('toggle');
+        showToast('Audio Feedback Enabled');
+      } else {
+        showToast('Audio Feedback Muted');
+      }
+    });
+  }
+
+  // Play subtle feedback on interactive clicks
+  const interactiveSelectors = '.btn-primary, .btn-outline, .btn-icon, .hud-item, .filter-btn, .btn-project-spec, .cyber-theme-switch, .award-card, .btn-project';
+  document.querySelectorAll(interactiveSelectors).forEach(el => {
+    el.addEventListener('click', () => {
+      playUiSound('click');
+    });
+  });
+}
+
+function playUiSound(type = 'click') {
+  if (!soundEnabled) return;
+
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    if (!audioCtx) {
+      audioCtx = new AudioContextClass();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    const now = audioCtx.currentTime;
+
+    if (type === 'toggle') {
+      // Futuristic dual chime
+      const osc1 = audioCtx.createOscillator();
+      const osc2 = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc1.type = 'sine';
+      osc2.type = 'sine';
+      osc1.frequency.setValueAtTime(587.33, now); // D5
+      osc2.frequency.setValueAtTime(880, now + 0.05); // A5
+
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc1.start(now);
+      osc2.start(now + 0.05);
+      osc1.stop(now + 0.18);
+      osc2.stop(now + 0.18);
+    } else {
+      // Subtle modern sci-fi micro-click
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, now);
+      osc.frequency.exponentialRampToValueAtTime(320, now + 0.04);
+
+      gain.gain.setValueAtTime(0.03, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.04);
+    }
+  } catch (err) {
+    // Ignore audio permission/context errors gracefully
+  }
+}
+
+// Expose globally
+window.playUiSound = playUiSound;
+
+/* ==========================================================================
+   12. ANIMATED NUMBER STAT COUNTERS
+   ========================================================================== */
+function initAnimatedCounters() {
+  const counters = document.querySelectorAll('.stat-counter');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateValue(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  counters.forEach(counter => observer.observe(counter));
+
+  function animateValue(el) {
+    const target = parseFloat(el.getAttribute('data-target') || el.textContent);
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const duration = 1200; // ms
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const current = easeProgress * target;
+
+      el.textContent = current.toFixed(decimals);
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = target.toFixed(decimals);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+}
+
+/* ==========================================================================
+   13. PROJECT ARCHITECTURE & ML MODEL SPECS MODAL
+   ========================================================================== */
+function initProjectSpecsModal() {
+  const modal = document.getElementById('spec-modal');
+  const modalTitle = document.getElementById('spec-modal-title');
+  const modalContent = document.getElementById('spec-modal-content');
+  const closeBtn = document.getElementById('spec-modal-close');
+  const specBtns = document.querySelectorAll('.btn-project-spec');
+
+  if (!modal || !modalContent) return;
+
+  const specsData = {
+    fraud: {
+      title: "Fraud Detection System (XAI) &bull; Architecture & Specs",
+      badge: "Stacking Ensemble + TreeSHAP Explainer",
+      description: "Production-grade credit fraud classification pipeline engineered for high-imbalance datasets. Incorporates automated Explainable AI (XAI) to decompose high-risk predictions into individual feature contributions for financial auditors.",
+      metrics: [
+        { label: "Model Architecture", val: "Ensemble (XGBoost + LightGBM + RF)" },
+        { label: "ROC-AUC Score", val: "99.42%" },
+        { label: "Inference Latency", val: "~14ms (Single Txn)" },
+        { label: "Minority Class F1", val: "98.15%" },
+        { label: "Sampling Strategy", val: "SMOTE + Tomek-Links" },
+        { label: "Explainability", val: "TreeSHAP Local & Global Plots" }
+      ],
+      pipeline: [
+        "Ingestion: Normalized transaction features ($V_1$ through $V_{28}$ PCA components + Amount + Time)",
+        "Imbalance Mitigation: SMOTE oversampling combined with Tomek-link undersampling boundary cleanup",
+        "Ensemble Classifier: Tuned hyperparameter gradient boosted trees with early stopping",
+        "Explainability Layer: Fast TreeSHAP kernel computes exact Shapley values for positive risk deviation",
+        "Deployment: Streamlit cloud interface with interactive feature perturbation sandbox"
+      ],
+      techStack: ["Python 3.11", "Streamlit", "Scikit-Learn", "XGBoost", "LightGBM", "SHAP", "Matplotlib", "Pandas"],
+      liveUrl: "https://etgt-frd-v2-xai.streamlit.app/"
+    },
+    ats: {
+      title: "ATS SACS Resume Evaluator &bull; Architecture & Specs",
+      badge: "spaCy NLP + Vector Cosine Semantic Distance",
+      description: "Applicant Tracking System (ATS) optimization engine that parses unstructured CVs, extracts technical taxonomy graphs, and computes semantic alignment against targeted job requirements with keyword gap detection.",
+      metrics: [
+        { label: "NLP Engine", val: "spaCy (en_core_web_sm) + NLTK" },
+        { label: "Semantic Match Accuracy", val: "96.2%" },
+        { label: "Document Parse Time", val: "1.18s / 5-page CV" },
+        { label: "Entity Match Rubric", val: "40% Skills, 35% Exp, 25% Fmt" },
+        { label: "Taxonomy Database", val: "45,000+ Tech Skills" },
+        { label: "Supported Formats", val: "PDF, DOCX, Plain Text" }
+      ],
+      pipeline: [
+        "Document Parsing: High-fidelity token and boundary extraction via PyPDF2 and pdfplumber",
+        "Entity Extraction: Custom Named Entity Recognizer for developer frameworks, libraries, and certifications",
+        "TF-IDF & Vector Space: Vectorized token frequency with cosine similarity benchmarking against JD tokens",
+        "Gap Analysis Algorithm: Set-theoretic intersection reveals high-value missing keywords and density gaps",
+        "Reporting Engine: Interactive grade card with instant visual recommendations and ATS score gauge"
+      ],
+      techStack: ["Python", "Streamlit", "spaCy", "Scikit-Learn", "PyPDF2", "pdfplumber", "NLTK", "Regex"],
+      liveUrl: "https://ats-sacs-resume.streamlit.app/"
+    },
+    research: {
+      title: "Research Lens AI Analyzer &bull; Architecture & Specs",
+      badge: "RAG Pipeline + Multi-Document LLM Context Engine",
+      description: "Intelligent scientific research accelerator that breaks down complex arXiv and IEEE papers into structural methodology critiques, formula derivations, key contributions, and reproducible experimental findings.",
+      metrics: [
+        { label: "Architecture", val: "RAG (Retrieval-Augmented Gen)" },
+        { label: "Chunking Algorithm", val: "Recursive Character (1000/200)" },
+        { label: "Vector Search", val: "FAISS / ChromaDB Top-K = 5" },
+        { label: "Embeddings Model", val: "OpenAI text-embedding-3 / HF" },
+        { label: "Context Window", val: "128k Token Dynamic Context" },
+        { label: "Response Latency", val: "1.4s First Token Stream" }
+      ],
+      pipeline: [
+        "Document Ingestion: Multi-column academic PDF text extraction with equation preservation",
+        "Semantic Chunking: Recursive chunk splitting with 20% token overlap for cross-sentence continuity",
+        "Vector Indexing: Embedding synthesis indexed into high-dimensional similarity KD-trees",
+        "Context Retrieval: Top-K dense retrieval injects targeted methodology citations into query prompts",
+        "Peer Review Generation: LLM synthesizes strengths, architectural limitations, and proposed extensions"
+      ],
+      techStack: ["Python", "Streamlit", "LangChain", "FAISS", "PyPDF", "OpenAI API", "Hugging Face"],
+      liveUrl: "https://research-lens-ai.streamlit.app/"
+    }
+  };
+
+  function openSpecs(specKey) {
+    const data = specsData[specKey] || specsData.fraud;
+
+    if (modalTitle) {
+      modalTitle.innerHTML = `<i class="fa-solid fa-microchip text-gradient-cyan"></i> <span>${data.title}</span>`;
+    }
+
+    let metricsHtml = '';
+    data.metrics.forEach(m => {
+      metricsHtml += `
+        <div class="spec-item">
+          <div class="spec-label">${m.label}</div>
+          <div class="spec-val">${m.val}</div>
+        </div>
+      `;
+    });
+
+    let pipelineHtml = '';
+    data.pipeline.forEach((p, idx) => {
+      pipelineHtml += `
+        <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+          <span style="color:var(--neon-cyan); font-weight:700;">[0${idx + 1}]</span>
+          <span>${p}</span>
+        </li>
+      `;
+    });
+
+    let stackBadges = '';
+    data.techStack.forEach(t => {
+      stackBadges += `<span class="project-tag font-mono" style="font-size:0.75rem;">${t}</span>`;
+    });
+
+    modalContent.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 1rem; flex-wrap:wrap; gap:0.5rem;">
+        <span class="status-badge" style="background:rgba(6,182,212,0.12); border-color:rgba(6,182,212,0.4); color:var(--neon-cyan);">
+          <i class="fa-solid fa-code-branch"></i> ${data.badge}
+        </span>
+        <a href="${data.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:0.4rem 0.85rem; font-size:0.8rem;">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Live App
+        </a>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem;">
+        ${data.description}
+      </p>
+
+      <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--neon-cyan); margin-bottom: 0.6rem;" class="font-mono">
+        <i class="fa-solid fa-chart-line"></i> Benchmark Specifications
+      </h4>
+      <div class="spec-grid">
+        ${metricsHtml}
+      </div>
+
+      <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--neon-cyan); margin: 1.25rem 0 0.6rem 0;" class="font-mono">
+        <i class="fa-solid fa-diagram-project"></i> Pipeline Data Flow
+      </h4>
+      <ul style="list-style: none; padding: 0; font-size: 0.82rem; color: var(--text-dim); line-height: 1.55;">
+        ${pipelineHtml}
+      </ul>
+
+      <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--neon-cyan); margin: 1.25rem 0 0.6rem 0;" class="font-mono">
+        <i class="fa-solid fa-layer-group"></i> Technologies &amp; Libraries
+      </h4>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+        ${stackBadges}
+      </div>
+    `;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (window.playUiSound) window.playUiSound('toggle');
+  }
+
+  specBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const specKey = btn.getAttribute('data-spec');
+      openSpecs(specKey);
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+}
+
+/* ==========================================================================
+   14. INTERACTIVE PRINTABLE RESUME (CV) MODAL
+   ========================================================================== */
+function initResumeModal() {
+  const modal = document.getElementById('resume-modal');
+  const viewBtn = document.getElementById('view-resume-btn');
+  const closeBtn = document.getElementById('resume-modal-close');
+  const printBtn = document.getElementById('print-resume-btn');
+
+  if (!modal) return;
+
+  function openResume() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (window.playUiSound) window.playUiSound('toggle');
+  }
+
+  function closeResume() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (viewBtn) viewBtn.addEventListener('click', openResume);
+  if (closeBtn) closeBtn.addEventListener('click', closeResume);
+
+  if (printBtn) {
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeResume();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeResume();
+    }
+  });
+}
+
+/* ==========================================================================
+   15. FLOATING QUICK-NAV HUD DOCK ACTIVE HIGHLIGHT
+   ========================================================================== */
+function initFloatingHud() {
+  const hudItems = document.querySelectorAll('.floating-hud-dock .hud-item');
+  if (!hudItems.length) return;
+
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset + 200;
+
+    sections.forEach(sec => {
+      const secHeight = sec.offsetHeight;
+      const secTop = sec.offsetTop;
+      const secId = sec.getAttribute('id');
+
+      if (scrollY >= secTop && scrollY < secTop + secHeight) {
+        hudItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('href') === `#${secId}`) {
+            item.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { passive: true });
+}
+
