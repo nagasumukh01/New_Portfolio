@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initScrollSpy();
   initScrollProgressBar();
-  initSoundFX();
   initAnimatedCounters();
   initProjectSpecsModal();
   initResumeModal();
@@ -544,119 +543,8 @@ function initScrollProgressBar() {
   updateProgress();
 }
 
-/* ==========================================================================
-   11. PROCEDURAL SOUND FX (WEB AUDIO API - ZERO LAG, NO ASSET DOWNLOADS)
-   Subtle futuristic UI audio clicks with user mute control
-   ========================================================================== */
-let audioCtx = null;
-let soundEnabled = localStorage.getItem('portfolio-sound-enabled') === 'true';
-
-function initSoundFX() {
-  const soundBtn = document.getElementById('sound-toggle-btn');
-  const soundIcon = document.getElementById('sound-icon');
-
-  function updateSoundIcon() {
-    if (!soundIcon) return;
-    if (soundEnabled) {
-      soundIcon.className = 'fa-solid fa-volume-high';
-      soundBtn?.setAttribute('title', 'Mute Sound Effects');
-      soundBtn?.classList.add('active');
-    } else {
-      soundIcon.className = 'fa-solid fa-volume-xmark';
-      soundBtn?.setAttribute('title', 'Enable Sound Effects');
-      soundBtn?.classList.remove('active');
-    }
-  }
-
-  updateSoundIcon();
-
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      soundEnabled = !soundEnabled;
-      localStorage.setItem('portfolio-sound-enabled', soundEnabled ? 'true' : 'false');
-      updateSoundIcon();
-
-      if (soundEnabled) {
-        playUiSound('toggle');
-        showToast('Audio Feedback Enabled');
-      } else {
-        showToast('Audio Feedback Muted');
-      }
-    });
-  }
-
-  // Play subtle feedback on interactive clicks
-  const interactiveSelectors = '.btn-primary, .btn-outline, .btn-icon, .hud-item, .filter-btn, .btn-project-spec, .cyber-theme-switch, .award-card, .btn-project';
-  document.querySelectorAll(interactiveSelectors).forEach(el => {
-    el.addEventListener('click', () => {
-      playUiSound('click');
-    });
-  });
-}
-
-function playUiSound(type = 'click') {
-  if (!soundEnabled) return;
-
-  try {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
-
-    if (!audioCtx) {
-      audioCtx = new AudioContextClass();
-    }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    const now = audioCtx.currentTime;
-
-    if (type === 'toggle') {
-      // Futuristic dual chime
-      const osc1 = audioCtx.createOscillator();
-      const osc2 = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc1.type = 'sine';
-      osc2.type = 'sine';
-      osc1.frequency.setValueAtTime(587.33, now); // D5
-      osc2.frequency.setValueAtTime(880, now + 0.05); // A5
-
-      gain.gain.setValueAtTime(0.04, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
-
-      osc1.connect(gain);
-      osc2.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc1.start(now);
-      osc2.start(now + 0.05);
-      osc1.stop(now + 0.18);
-      osc2.stop(now + 0.18);
-    } else {
-      // Subtle modern sci-fi micro-click
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(800, now);
-      osc.frequency.exponentialRampToValueAtTime(320, now + 0.04);
-
-      gain.gain.setValueAtTime(0.03, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start(now);
-      osc.stop(now + 0.04);
-    }
-  } catch (err) {
-    // Ignore audio permission/context errors gracefully
-  }
-}
-
-// Expose globally
-window.playUiSound = playUiSound;
+// Safe no-op audio helper
+window.playUiSound = function() {};
 
 /* ==========================================================================
    12. ANIMATED NUMBER STAT COUNTERS
